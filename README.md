@@ -18,9 +18,9 @@
 ## Robotics Focused Projects
 - (COMPLETED) MS Data Science - AI Capston [SEAQUEST](https://github.com/AdmiralCrow/SEAQUEST/blob/main/README.md)
 - PhD Computer Science (Robotics)
-      - (PUBLISHED)[Privacy-Preserving Multi-Agent Marine Data Collection via Differential Privacy](https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience/tree/main](https://github.com/FIU-MoRA-Lab/combining_remote_and_in-situ_sensing))
-      - (PUBLISHED)[AI-driven Heterogeneous Robot Teams for Critical Infrastructure Resilience](https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience/tree/main)
-      - (ACCEPTED)[Event-Triggered Coverage Planning for Towable Sensing Systems](https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems))
+  - (PUBLISHED)[Privacy-Preserving Multi-Agent Marine Data Collection via Differential Privacy](https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience/tree/main](https://github.com/FIU-MoRA-Lab/combining_remote_and_in-situ_sensing))
+  - (PUBLISHED)[AI-driven Heterogeneous Robot Teams for Critical Infrastructure Resilience](https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience/tree/main)
+  - (ACCEPTED)[Event-Triggered Coverage Planning for Towable Sensing Systems](https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems))
 
 ## CAD / Fusion Creations
   - Flight Simulator Project
