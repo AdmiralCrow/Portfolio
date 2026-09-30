@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Devesa - Roboticist & AI Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+
+        :root{
+            --navy:#001830;
+            --navy-mid:#002a4e;
+            --navy-light:#003d6b;
+            --ocean:#0077b6;
+            --cyan:#00b4d8;
+            --cyan-glow:#90e0ef;
+            --sand:#caf0f8;
+            --white:#f8fdff;
+            --text:#e0f0ff;
+            --text-dim:#7fb8d4;
+            --success:#34d399;
+        }
+
+        html{scroll-behavior:smooth}
+
+        body{
+            font-family:'Inter',system-ui,-apple-system,sans-serif;
+            line-height:1.7;
+            color:var(--text);
+            background:var(--navy);
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+
+        /* ═══════ NAV ═══════ */
+        nav{
+            background:rgba(0,24,48,0.85);
+            backdrop-filter:blur(20px);
+            padding:1rem 0;
+            position:sticky;top:0;z-index:1000;
+            border-bottom:1px solid rgba(0,180,216,0.15);
+        }
+        nav .wrap{
+            max-width:1200px;margin:0 auto;padding:0 2rem;
+            display:flex;justify-content:space-between;align-items:center;
+        }
+        .logo{
+            font-size:1.6rem;font-weight:800;letter-spacing:2px;
+            color:var(--cyan);
+            text-transform:uppercase;
+        }
+        .logo span{color:var(--text-dim);font-weight:400;font-size:0.85rem;letter-spacing:1px;margin-left:0.5rem}
+        nav ul{list-style:none;display:flex;gap:2rem}
+        nav a{
+            color:var(--text-dim);text-decoration:none;font-weight:500;font-size:0.95rem;
+            transition:color 0.3s;position:relative;
+        }
+        nav a::after{
+            content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+            background:var(--cyan);transition:width 0.3s;
+        }
+        nav a:hover{color:var(--cyan)}
+        nav a:hover::after{width:100%}
+
+        /* ═══════ HERO ═══════ */
+        .hero{
+            position:relative;
+            padding:8rem 2rem 10rem;
+            text-align:center;
+            overflow:hidden;
+            background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);
+        }
+
+        /* Sonar rings */
+        .sonar{
+            position:absolute;top:50%;right:8%;
+            width:400px;height:400px;
+            transform:translate(0,-50%);
+            opacity:0.08;
+        }
+        .sonar-ring{
+            position:absolute;border:2px solid var(--cyan);border-radius:50%;
+            top:50%;left:50%;transform:translate(-50%,-50%);
+            animation:sonarPulse 4s ease-out infinite;
+        }
+        .sonar-ring:nth-child(1){width:100px;height:100px;animation-delay:0s}
+        .sonar-ring:nth-child(2){width:200px;height:200px;animation-delay:0.8s}
+        .sonar-ring:nth-child(3){width:300px;height:300px;animation-delay:1.6s}
+        .sonar-ring:nth-child(4){width:400px;height:400px;animation-delay:2.4s}
+
+        @keyframes sonarPulse{
+            0%{opacity:1;transform:translate(-50%,-50%) scale(0.5)}
+            100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}
+        }
+
+        /* Animated wave SVG at bottom of hero */
+        .wave-divider{
+            position:absolute;bottom:-2px;left:0;width:100%;
+            line-height:0;
+        }
+        .wave-divider svg{
+            width:100%;height:80px;
+        }
+
+        .hero .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto}
+
+        .hero-badge{
+            display:inline-flex;align-items:center;gap:0.5rem;
+            background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.25);
+            padding:0.5rem 1.2rem;border-radius:40px;
+            font-size:0.85rem;color:var(--cyan);font-weight:600;
+            margin-bottom:2rem;letter-spacing:1px;text-transform:uppercase;
+            animation:fadeIn 0.8s ease;
+        }
+
+        .hero h1{
+            font-size:3.8rem;font-weight:900;letter-spacing:-2px;
+            line-height:1.1;margin-bottom:1.5rem;
+            background:linear-gradient(135deg,#ffffff 0%,var(--cyan-glow) 100%);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .hero p{
+            font-size:1.2rem;color:var(--text-dim);
+            max-width:650px;margin:0 auto 2.5rem;font-weight:300;
+            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.15s backwards;
+        }
+
+        .hero-btns{
+            display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s backwards;
+        }
+
+        .btn{
+            padding:0.9rem 2rem;border-radius:8px;text-decoration:none;
+            font-weight:600;font-size:0.95rem;
+            display:inline-flex;align-items:center;gap:0.5rem;
+            transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+            border:none;cursor:pointer;
+        }
+        .btn-fill{
+            background:linear-gradient(135deg,var(--ocean),var(--cyan));color:#fff;
+            box-shadow:0 4px 20px rgba(0,119,182,0.4);
+        }
+        .btn-fill:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,119,182,0.5)}
+        .btn-outline{
+            background:transparent;color:var(--cyan);
+            border:2px solid rgba(0,180,216,0.4);
+        }
+        .btn-outline:hover{
+            background:rgba(0,180,216,0.1);border-color:var(--cyan);
+            transform:translateY(-3px);
+        }
+
+        /* ═══════ SECTION COMMON ═══════ */
+        .sec{
+            max-width:1200px;margin:0 auto;
+            padding:5rem 2rem;
+        }
+        .sec-title{
+            font-size:0.85rem;font-weight:700;text-transform:uppercase;
+            letter-spacing:3px;color:var(--cyan);margin-bottom:0.5rem;
+        }
+        .sec h2{
+            font-size:2.6rem;font-weight:800;color:var(--white);
+            margin-bottom:3rem;letter-spacing:-1px;
+        }
+        .divider{
+            width:60px;height:3px;margin:1rem 0 2.5rem;
+            background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;
+        }
+
+        /* ═══════ ABOUT ═══════ */
+        .about-grid{
+            display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center;
+        }
+        .about-text{color:var(--text-dim);font-size:1.05rem}
+        .about-text p{margin-bottom:1.5rem}
+        .about-text strong{color:var(--cyan)}
+
+        .profile-card{
+            text-align:center;
+        }
+        .profile-img{
+            width:240px;height:240px;border-radius:50%;object-fit:cover;
+            border:4px solid var(--navy-light);
+            box-shadow:0 0 40px rgba(0,180,216,0.2), 0 0 80px rgba(0,119,182,0.1);
+            animation:profileGlow 4s ease-in-out infinite alternate;
+        }
+        @keyframes profileGlow{
+            0%{box-shadow:0 0 40px rgba(0,180,216,0.15),0 0 80px rgba(0,119,182,0.05)}
+            100%{box-shadow:0 0 60px rgba(0,180,216,0.3),0 0 100px rgba(0,119,182,0.15)}
+        }
+        .profile-name{
+            margin-top:1.5rem;font-size:1.3rem;font-weight:700;color:var(--white);
+        }
+        .profile-role{color:var(--cyan);font-size:0.9rem;font-weight:500;margin-top:0.3rem}
+
+        /* ═══════ SKILLS ═══════ */
+        .skills-row{
+            display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+            margin-top:3rem;
+        }
+        .skill-card{
+            background:linear-gradient(135deg,rgba(0,42,78,0.6),rgba(0,61,107,0.3));
+            border:1px solid rgba(0,180,216,0.12);
+            padding:1.8rem;border-radius:12px;
+            transition:all 0.3s;
+        }
+        .skill-card:hover{
+            transform:translateY(-6px);
+            border-color:var(--cyan);
+            box-shadow:0 10px 40px rgba(0,180,216,0.1);
+        }
+        .skill-icon{font-size:1.8rem;margin-bottom:1rem}
+        .skill-card h4{color:var(--white);font-size:1rem;margin-bottom:0.6rem;font-weight:700}
+        .skill-card p{color:var(--text-dim);font-size:0.85rem;line-height:1.6}
+
+        /* ═══════ PROJECTS ═══════ */
+        .proj-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:2rem;
+        }
+        .proj{
+            background:linear-gradient(180deg,rgba(0,42,78,0.5),rgba(0,24,48,0.8));
+            border:1px solid rgba(0,180,216,0.1);
+            border-radius:12px;overflow:hidden;
+            transition:all 0.35s cubic-bezier(0.16,1,0.3,1);
+            display:flex;flex-direction:column;
+        }
+        .proj:hover{
+            transform:translateY(-10px);
+            border-color:rgba(0,180,216,0.3);
+            box-shadow:0 20px 60px rgba(0,119,182,0.15);
+        }
+        .proj-top{
+            padding:2rem;
+            background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
+            position:relative;overflow:hidden;
+        }
+        .proj-top::before{
+            content:'';position:absolute;top:-30px;right:-30px;
+            width:120px;height:120px;
+            border:2px solid rgba(0,180,216,0.1);border-radius:50%;
+        }
+        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;position:relative;z-index:1}
+        .proj-tag{
+            display:inline-block;
+            background:rgba(0,180,216,0.15);border:1px solid rgba(0,180,216,0.3);
+            padding:0.3rem 0.8rem;border-radius:20px;
+            font-size:0.8rem;color:var(--cyan);font-weight:600;
+            position:relative;z-index:1;
+        }
+        .proj-body{padding:2rem;flex-grow:1;display:flex;flex-direction:column}
+        .proj-body p{color:var(--text-dim);margin-bottom:1.5rem;flex-grow:1;font-size:0.95rem}
+        .proj-techs{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.5rem}
+        .tech{
+            background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.2);
+            color:var(--cyan);padding:0.3rem 0.7rem;border-radius:4px;
+            font-size:0.8rem;font-weight:600;font-family:'JetBrains Mono',monospace;
+        }
+        .proj-link{
+            display:inline-flex;align-items:center;gap:0.5rem;
+            color:var(--cyan);text-decoration:none;font-weight:600;font-size:0.9rem;
+            transition:all 0.3s;
+        }
+        .proj-link:hover{color:var(--cyan-glow);transform:translateX(4px)}
+        .proj-status{
+            margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,180,216,0.1);
+            color:var(--success);font-weight:600;font-size:0.85rem;
+        }
+
+        /* ═══════ PUBLICATIONS ═══════ */
+        .pub{
+            background:linear-gradient(135deg,rgba(0,42,78,0.4),rgba(0,24,48,0.6));
+            border:1px solid rgba(52,211,153,0.15);
+            border-left:4px solid var(--success);
+            padding:2rem;margin-bottom:1.5rem;border-radius:8px;
+            transition:all 0.3s;
+        }
+        .pub:hover{
+            transform:translateX(6px);
+            border-left-color:var(--cyan);
+            box-shadow:0 10px 40px rgba(0,119,182,0.1);
+        }
+        .pub h4{color:var(--white);font-size:1.05rem;margin-bottom:0.6rem;font-weight:700}
+        .pub .authors{color:var(--text-dim);font-style:italic;font-size:0.9rem;margin-bottom:0.5rem}
+        .pub .venue{color:var(--text-dim);font-size:0.9rem}
+        .pub .venue strong{color:var(--cyan)}
+        .pub .doi{color:var(--ocean);font-size:0.85rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace}
+
+        /* ═══════ EXPERIENCE ═══════ */
+        .timeline{position:relative;padding-left:3rem}
+        .timeline::before{
+            content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+            background:linear-gradient(180deg,var(--cyan),var(--ocean),transparent);
+        }
+        .tl-item{margin-bottom:3rem;position:relative}
+        .tl-item::before{
+            content:'';position:absolute;left:-3rem;top:4px;
+            width:14px;height:14px;border-radius:50%;
+            background:var(--navy);border:3px solid var(--cyan);
+            box-shadow:0 0 12px rgba(0,180,216,0.3);
+            margin-left:-6px;
+        }
+        .tl-item h4{color:var(--white);font-size:1.15rem;font-weight:700;margin-bottom:0.3rem}
+        .tl-date{color:var(--cyan);font-weight:600;font-size:0.9rem;margin-bottom:0.4rem}
+        .tl-item p{color:var(--text-dim);font-size:0.95rem}
+        .tl-item p strong{color:var(--white)}
+
+        /* ═══════ CONTACT ═══════ */
+        .contact-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;
+        }
+        .contact-card{
+            background:linear-gradient(135deg,rgba(0,42,78,0.5),rgba(0,24,48,0.7));
+            border:1px solid rgba(0,180,216,0.1);
+            padding:2.5rem 1.5rem;border-radius:12px;text-align:center;
+            transition:all 0.3s;
+        }
+        .contact-card:hover{
+            transform:translateY(-8px);
+            border-color:var(--cyan);
+            box-shadow:0 15px 50px rgba(0,180,216,0.12);
+        }
+        .contact-card i{font-size:2rem;color:var(--cyan);margin-bottom:1rem}
+        .contact-card h4{color:var(--white);font-size:1rem;margin-bottom:0.8rem;font-weight:700}
+        .contact-card a{color:var(--cyan);text-decoration:none;font-weight:500;font-size:0.9rem;transition:color 0.3s}
+        .contact-card a:hover{color:var(--cyan-glow)}
+
+        /* ═══════ FOOTER ═══════ */
+        footer{
+            border-top:1px solid rgba(0,180,216,0.1);
+            text-align:center;padding:3rem 2rem;
+            color:var(--text-dim);font-size:0.9rem;
+        }
+        footer .brand{color:var(--cyan);font-weight:700;font-size:1rem;margin-bottom:0.5rem}
+
+        /* ═══════ ANIMATIONS ═══════ */
+        @keyframes slideUp{
+            from{opacity:0;transform:translateY(40px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        @keyframes fadeIn{
+            from{opacity:0}to{opacity:1}
+        }
+
+        /* Scroll reveal */
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media(max-width:768px){
+            nav ul{gap:1rem;font-size:0.85rem}
+            .hero{padding:5rem 1.5rem 7rem}
+            .hero h1{font-size:2.4rem}
+            .hero p{font-size:1rem}
+            .about-grid{grid-template-columns:1fr;gap:2rem}
+            .profile-card{order:-1}
+            .skills-row{grid-template-columns:1fr 1fr}
+            .proj-grid{grid-template-columns:1fr}
+            .sec h2{font-size:2rem}
+            .sec{padding:3rem 1.5rem}
+            .btn{width:100%;justify-content:center}
+        }
+
+        @media(max-width:480px){
+            .skills-row{grid-template-columns:1fr}
+            .logo span{display:none}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="wrap">
+        <div class="logo">DEVESA <span>// Maritime Autonomy</span></div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <!-- Sonar animation -->
+    <div class="sonar">
+        <div class="sonar-ring"></div>
+        <div class="sonar-ring"></div>
+        <div class="sonar-ring"></div>
+        <div class="sonar-ring"></div>
+    </div>
+
+    <div class="wrap">
+        <div class="hero-badge"><i class="fas fa-anchor"></i> U.S. Navy Veteran &bull; DoD Secret Clearance</div>
+        <h1>Maritime Autonomy<br>& Robotics</h1>
+        <p>Building autonomous underwater, surface, and aerial robotic systems for critical infrastructure resilience and environmental monitoring.</p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-fill"><i class="fas fa-water"></i> View My Work</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+        </div>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path fill="var(--navy)" fill-opacity="0.4"
+                d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z">
+                <animate attributeName="d"
+                    values="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z;
+                            M0,50 C360,10 720,70 1080,30 C1260,10 1380,40 1440,50 L1440,80 L0,80 Z;
+                            M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"
+                    dur="8s" repeatCount="indefinite"/>
+            </path>
+            <path fill="var(--navy)" fill-opacity="0.7"
+                d="M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z">
+                <animate attributeName="d"
+                    values="M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z;
+                            M0,45 C480,70 960,25 1440,55 L1440,80 L0,80 Z;
+                            M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z"
+                    dur="6s" repeatCount="indefinite"/>
+            </path>
+            <path fill="var(--navy)"
+                d="M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z">
+                <animate attributeName="d"
+                    values="M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z;
+                            M0,60 C720,75 720,50 1440,65 L1440,80 L0,80 Z;
+                            M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z"
+                    dur="10s" repeatCount="indefinite"/>
+            </path>
+        </svg>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<div class="sec" id="about">
+    <div class="sec-title">About</div>
+    <h2>Anthony Devesa</h2>
+    <div class="about-grid reveal">
+        <div class="about-text">
+            <p>
+                I'm a <strong>PhD Candidate in Computer Science</strong> at Florida International University
+                specializing in AI and Robotics, and a <strong>Modeling and Simulation Systems Engineer at Northrop Grumman</strong>.
+            </p>
+            <p>
+                My research focuses on autonomous marine robotics &mdash; designing event-triggered coverage planning
+                algorithms for heterogeneous robot teams (drones, AUVs, ASVs) and developing privacy-preserving
+                multi-agent data collection methods for critical infrastructure monitoring.
+            </p>
+            <p>
+                As a U.S. Navy veteran, I bring discipline and real-world operational perspective to
+                every system I build. I validate my work through CFD analysis and field deployments,
+                and present findings to government and defense stakeholders.
+            </p>
+        </div>
+        <div class="profile-card">
+            <img id="profile-photo" src="profile.jpg" alt="Anthony Devesa" class="profile-img">
+            <div class="profile-name">Anthony Devesa</div>
+            <div class="profile-role">PhD Candidate &bull; Roboticist</div>
+        </div>
+    </div>
+
+    <div class="skills-row reveal">
+        <div class="skill-card">
+            <div class="skill-icon">🤖</div>
+            <h4>AI & Machine Learning</h4>
+            <p>TensorFlow, YOLO, Federated Learning, Differential Privacy, Multi-Agent Systems, RL</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🌊</div>
+            <h4>Robotics & Simulation</h4>
+            <p>ROS, Isaac Lab/Sim, Arduino, QGroundControl, BlueRobotics, Hycat Controls</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">⚙️</div>
+            <h4>Programming</h4>
+            <p>Python, C++, NumPy, Pandas, Matplotlib, Docker, Fusion 360</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🛡️</div>
+            <h4>Systems & Security</h4>
+            <p>MBSE, Google Cloud, Windows Server, Security Analysis, Project Management</p>
+        </div>
+    </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="sec" id="projects">
+    <div class="sec-title">Projects</div>
+    <h2>Featured Work</h2>
+    <div class="proj-grid">
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>Event-Triggered Coverage Planning</h3>
+                <span class="proj-tag">PhD Research</span>
+            </div>
+            <div class="proj-body">
+                <p>Adaptive coverage algorithms for autonomous marine sensing across drones, AUVs, and surface vehicles. Validated through CFD analysis and real-world ASV/ROV field deployments.</p>
+                <div class="proj-techs">
+                    <span class="tech">Python</span><span class="tech">ROS</span><span class="tech">CFD</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <div class="proj-status">✓ Accepted &mdash; IROS 2026</div>
+            </div>
+        </div>
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>AI-Driven Heterogeneous Robot Teams</h3>
+                <span class="proj-tag">Published</span>
+            </div>
+            <div class="proj-body">
+                <p>Multi-agent systems for autonomous monitoring and critical infrastructure resilience. Privacy-preserving data collection using differential privacy for heterogeneous marine robot teams.</p>
+                <div class="proj-techs">
+                    <span class="tech">Multi-Agent</span><span class="tech">Diff. Privacy</span><span class="tech">Python</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <div class="proj-status">✓ Published &mdash; OCEANS 2025</div>
+            </div>
+        </div>
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>SEAQUEST</h3>
+                <span class="proj-tag">MS Capstone</span>
+            </div>
+            <div class="proj-body">
+                <p>CNN-based vessel detection from electro-optical and synthetic aperture radar imagery with decision-tree collision avoidance for autonomous navigation.</p>
+                <div class="proj-techs">
+                    <span class="tech">TensorFlow</span><span class="tech">YOLO</span><span class="tech">Python</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/SEAQUEST" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+            </div>
+        </div>
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>Odin AI</h3>
+                <span class="proj-tag">Personal Project</span>
+            </div>
+            <div class="proj-body">
+                <p>Local-first, multi-agent AI assistant with 13 specialized agents, local LLM orchestration, web dashboard, voice interface, and 800+ test suite. Containerized with Docker.</p>
+                <div class="proj-techs">
+                    <span class="tech">Python</span><span class="tech">Docker</span><span class="tech">React</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/Odin" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+            </div>
+        </div>
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>BlueROV Platform</h3>
+                <span class="proj-tag">Ongoing</span>
+            </div>
+            <div class="proj-body">
+                <p>Autonomous Underwater Vehicle platform with ROS integration, autonomous navigation, reinforcement learning pipelines, and real-world field deployment support.</p>
+                <div class="proj-techs">
+                    <span class="tech">ROS</span><span class="tech">Arduino</span><span class="tech">Python</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/BlueRov" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+            </div>
+        </div>
+
+        <div class="proj reveal">
+            <div class="proj-top">
+                <h3>CAD & Additive Manufacturing</h3>
+                <span class="proj-tag">Design</span>
+            </div>
+            <div class="proj-body">
+                <p>Flight simulator console, CNC machine cabinet, 3D printer integration, and custom robotics parts fabricated using modern CAD and additive manufacturing tools.</p>
+                <div class="proj-techs">
+                    <span class="tech">Fusion 360</span><span class="tech">GRBL</span><span class="tech">Blender</span>
+                </div>
+                <a href="https://github.com/AdmiralCrow/CAD-Designs" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="sec" id="research">
+    <div class="sec-title">Research</div>
+    <h2>Published Work</h2>
+
+    <div class="pub reveal">
+        <h4>AI-Driven Heterogeneous Robot Teams for Critical Infrastructure Resilience</h4>
+        <p class="authors">A. Devesa, T. Kaarlela, P. Padrao, J. Fuentes, L. Bobadilla and M. H. Amini</p>
+        <p class="venue"><strong>OCEANS 2025 &mdash; Great Lakes</strong>, Chicago, IL, USA, 2025, pp. 1-8</p>
+        <p class="doi">DOI: 10.23919/OCEANS59106.2025.11244994</p>
+    </div>
+
+    <div class="pub reveal">
+        <h4>Privacy-Preserving Multi-Agent Marine Data Collection via Differential Privacy</h4>
+        <p class="authors">C. A. Rojas, A. Devesa, H. Cabrera, G. M. Reis, L. Bobadilla and R. N. Smith</p>
+        <p class="venue"><strong>OCEANS 2023 &mdash; MTS/IEEE U.S. Gulf Coast</strong>, Biloxi, MS, USA, 2023, pp. 1-10</p>
+        <p class="doi">DOI: 10.23919/OCEANS52994.2023.10336953</p>
+    </div>
+
+    <div class="pub reveal">
+        <h4>Event-Triggered Coverage Planning for Towable Sensing Systems <span style="color:var(--success)">(Accepted)</span></h4>
+        <p class="authors">A. Devesa, D. Correa, C. Roa, L. Bobadilla, R. N. Smith and M. H. Amini</p>
+        <p class="venue"><strong>IEEE/RSJ IROS</strong>, Pittsburgh, PA, USA, 2026</p>
+    </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="sec">
+    <div class="sec-title">Experience</div>
+    <h2>Career Timeline</h2>
+    <div class="timeline">
+        <div class="tl-item reveal">
+            <h4>Modeling and Simulation Systems Engineer</h4>
+            <div class="tl-date">May 2026 &ndash; Present</div>
+            <p><strong>Northrop Grumman</strong></p>
+            <p>Apply AI/ML techniques to systems modeling and simulation workflows supporting MBSE. Develop validated simulation environments for mission-critical autonomous platforms.</p>
+        </div>
+        <div class="tl-item reveal">
+            <h4>Roboticist, PhD Candidate</h4>
+            <div class="tl-date">Jan 2024 &ndash; Present</div>
+            <p><strong>Florida International University</strong> &mdash; MORA LAB, SOLID LAB, CREST, IoE</p>
+            <p>Design event-triggered coverage planning algorithms. Manage research teams and validate mission-level trade-offs via CFD and field deployments.</p>
+        </div>
+        <div class="tl-item reveal">
+            <h4>Roboticist, Researcher (CTR)</h4>
+            <div class="tl-date">May 2025 &ndash; Aug 2025</div>
+            <p><strong>Naval Research Lab</strong></p>
+            <p>Developed locomotion models for Boston Dynamics Spot in IsaacLab. Enhanced OceanSim with simulated EBS camera for underwater vision.</p>
+        </div>
+        <div class="tl-item reveal">
+            <h4>Researcher</h4>
+            <div class="tl-date">May 2023 &ndash; Aug 2023</div>
+            <p><strong>Wright-Patterson Air Force Base</strong></p>
+            <p>Research in autonomous systems and robotics technologies.</p>
+        </div>
+        <div class="tl-item reveal">
+            <h4>MA3 Police Officer, USN</h4>
+            <div class="tl-date">2012 &ndash; 2016</div>
+            <p><strong>NAVSTA Guantanamo Bay, Cuba</strong></p>
+            <p>U.S. Navy veteran. Good Conduct Medal, National Defense Medal, Global War on Terrorism Medal.</p>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sec" id="contact">
+    <div class="sec-title">Contact</div>
+    <h2>Let's Connect</h2>
+    <div class="contact-grid">
+        <div class="contact-card reveal">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <a href="mailto:DevesaAnthony@gmail.com">DevesaAnthony@gmail.com</a>
+        </div>
+        <div class="contact-card reveal">
+            <i class="fab fa-linkedin"></i>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/anthonydevesa/" target="_blank">linkedin.com/in/anthonydevesa</a>
+        </div>
+        <div class="contact-card reveal">
+            <i class="fab fa-github"></i>
+            <h4>GitHub</h4>
+            <a href="https://github.com/AdmiralCrow" target="_blank">github.com/AdmiralCrow</a>
+        </div>
+        <div class="contact-card reveal">
+            <i class="fas fa-phone"></i>
+            <h4>Phone</h4>
+            <a href="tel:+13052051557">305-205-1557</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="brand">DEVESA // Maritime Autonomy & Robotics</div>
+    <p>&copy; 2026 Anthony Devesa &bull; Roboticist &bull; AI Researcher &bull; PhD Candidate</p>
+    <p style="margin-top:0.5rem;font-size:0.8rem">DoD Secret Clearance &bull; Published Researcher &bull; U.S. Navy Veteran</p>
+</footer>
+
+<!-- Scroll Reveal Script -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

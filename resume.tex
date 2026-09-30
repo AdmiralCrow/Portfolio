@@ -1,0 +1,151 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[top=0.35in, bottom=0.3in, left=0.7in, right=0.7in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{times}
+\usepackage{amssymb}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Section formatting: centered, bold, small caps, horizontal rule below
+\titleformat{\section}{\centering\bfseries\fontsize{12}{13}\selectfont}{}{0pt}{}
+\titlespacing{\section}{0pt}{4pt}{2pt}
+\newcommand{\sectionrule}{\vspace{-2pt}\hrule\vspace{4pt}}
+
+% Compact bullet list
+\newlist{tightlist}{itemize}{1}
+\setlist[tightlist]{leftmargin=16pt, itemsep=1pt, topsep=1pt, parsep=0pt, label=\raisebox{0.15ex}{\tiny$\blacksquare$}}
+
+% Job entry: title/dates on left, company right-aligned, same line
+\newcommand{\jobheader}[3]{%
+  \vspace{2pt}\noindent\textbf{#1 (#2)}\hfill\textbf{#3}\par\vspace{1pt}%
+}
+
+\begin{document}
+
+%----------- HEADER -----------
+\begin{center}
+{\LARGE \bfseries Anthony Devesa}\\[2pt]
+\fontsize{9}{11}\selectfont
+305-205-1557 \quad DevesaAnthony@gmail.com \quad \textbullet\quad Bilingual (English/Spanish)\\
+DoD Secret Clearance \textbullet\ A+, Network+, Windows 10 MCSA\\
+\href{https://www.linkedin.com/in/anthonydevesa/}{linkedin.com/in/anthonydevesa} \quad \textbullet\quad
+\href{https://github.com/AdmiralCrow/Portfolio}{github.com/AdmiralCrow/Portfolio}
+\end{center}
+
+\vspace{-2pt}
+\section{Roboticist}
+\sectionrule
+\fontsize{9}{11}\selectfont
+\textit{As a dedicated Roboticist, I am actively involved in advancing AI, robotics, and machine learning
+through innovative research and real-world application. My current work focuses on developing autonomous
+underwater, surface, and aerial robotic systems for infrastructure and environmental monitoring. I have
+experience in geospatial planning, autonomous navigation, environmental sensing, robotic system integration,
+hydrodynamic analysis, simulation, and field validation with ASV and ROV platforms. Beyond research, I
+continue to build practical systems through side projects such as CNC machines and 3D printers, using tools
+like GRBL, Fusion 360, and additive manufacturing to fabricate custom parts and prototypes.}
+
+\section{Technical Proficiencies}
+\sectionrule
+\fontsize{9}{12}\selectfont
+\textbf{AI \& Machine Learning:} TensorFlow | YOLO | Federated Learning | Differential Privacy | Multi-Agent Systems\\
+\textbf{Robotics \& Simulation:} ROS | Isaac Lab/Sim | Arduino | Fusion 360 | GRBL | MeshLab | Blender\\
+\textbf{Programming \& Data:} Python | C++ | NumPy | Pandas | Matplotlib\\
+\textbf{Systems \& Management:} MS Windows | Windows Server | Google Cloud Service | Docker | Security Analysis | Project Management | Policy Development \& Implementation
+
+\section{Professional Experience}
+\sectionrule
+\fontsize{9}{11}\selectfont
+
+\jobheader{Modeling and Simulation Systems Engineer}{05/2026 -- present}{Northrop Grumman}
+\begin{tightlist}
+\item Apply AI/ML techniques to systems modeling and simulation workflows supporting model-based systems engineering (MBSE).
+\item Develop and evaluate simulation models to assess system performance, reliability, and integration across complex engineering programs.
+\item Automate systems engineering documentation and analysis workflows using AI-driven tools to improve efficiency and traceability.
+\item Collaborate remotely with multidisciplinary engineering teams to translate systems requirements into validated simulation environments.
+\end{tightlist}
+
+\jobheader{Roboticist, PhD Candidate}{01/2024 -- present}{Florida International University}
+\begin{tightlist}
+\item Design event-triggered coverage planning algorithms for autonomous marine sensing across drones, AUVs, and surface vehicles.
+\item Manage two undergraduate students, providing guidance and oversight on research projects.
+\item Develop privacy-preserving multi-agent data collection methods using differential privacy for heterogeneous marine robot teams monitoring critical infrastructure.
+\item Validate mission-level trade-offs (energy, drag, coverage) via CFD analysis and ASV/ROV field deployments; present findings to government and defense stakeholders.
+\end{tightlist}
+
+\jobheader{Roboticist, Researcher CTR}{05/2025 -- 08/2025}{Naval Research Lab}
+\begin{tightlist}
+\item Developed and trained locomotion models in IsaacLab for quadruped robot (Spot), enabling stable walking behavior in simulation.
+\item Enhanced OceanSim environment by integrating new features, including a simulated EBS camera for underwater vision tasks.
+\item Initiated transition from simulation to real-world deployment by adapting BlueROV pipeline for reinforcement learning and lab-based training.
+\end{tightlist}
+
+\vspace{2pt}
+\textbf{Researcher} (05/23 -- 08/23) \hfill \textbf{Wright-Patterson Air Force Base}\\
+\textbf{IT Operations -- Help Desk Specialist} (12/2018 -- 05/2019) \hfill \textbf{Preemo IT}\\
+\textbf{IT Operations -- Help Desk Specialist} (04/2018 -- 12/2018) \hfill \textbf{For Eyes by GrandVision}\\
+\textbf{MA3 Police Officer USN} (2012 -- 2016) \hfill \textbf{NAVSTA Guantanamo Bay, Cuba}
+
+\section{Personal Projects}
+\sectionrule
+\fontsize{9}{11}\selectfont
+\textbf{Odin AI} (2025--Present): local-first, multi-agent AI assistant system (13 agents) with local LLM
+orchestration, a web dashboard, voice interface, and an 800+ test suite; containerized with Docker.\\[2pt]
+\textbf{SEAQUEST} (2023--Present): MS/PhD capstone applying CNN-based vessel detection (EO/SAR imagery) and
+decision-tree collision avoidance for autonomous navigation; foundation for current PhD research.
+
+\section{Education and Training}
+\sectionrule
+\fontsize{9}{11}\selectfont
+\begin{tightlist}
+\item \textbf{Florida International University -- PhD Comp. Science - Focus in AI \& Robotics} \hfill \textbf{2024--2026}\\[2pt]
+\hspace{14pt}Member of Motion and Robotics Lab (MORA LAB), Sustainability, Optimization, and Learning for
+InterDependent networks laboratory (SOLID LAB), Center for Aquatic Chemistry and Environment (CREST),
+Institute of Environment (IoE)
+\item \textbf{MS Data Science -- Artificial Intelligence} \hfill \textbf{2023--2024}
+\item \textbf{BA Computer Science -- Minor in Asian Studies} \hfill \textbf{2019--2022}
+\end{tightlist}
+
+
+\section{Publications}
+\sectionrule
+\fontsize{9}{11}\selectfont
+\vspace{2pt}
+\noindent A. Devesa, T. Kaarlela, P. Padrao, J. Fuentes, L. Bobadilla and M. H. Amini, ``AI-Driven
+Heterogeneous Robot Teams for Critical Infrastructure Resilience,'' \textit{OCEANS 2025 - Great Lakes},
+Chicago, IL, USA, 2025, pp. 1-8, doi: 10.23919/OCEANS59106.2025.11244994.
+
+\vspace{4pt}
+\noindent C. A. Rojas, A. Devesa, H. Cabrera, G. M. Reis, L. Bobadilla and R. N. Smith, ``Privacy-Preserving
+Multi-Agent Marine Data Collection via Differential Privacy,'' \textit{OCEANS 2023 - MTS/IEEE U.S. Gulf
+Coast}, Biloxi, MS, USA, 2023, pp. 1-10, doi: 10.23919/OCEANS52994.2023.10336953.
+
+\vspace{4pt}
+\noindent A. Devesa, D. Correa, C. Roa, L. Bobadilla, R. N. Smith and M. H. Amini, ``Event-Triggered
+Coverage Planning for Towable Sensing Systems,'' \textit{IEEE/RSJ International Conference on Intelligent
+Robots and Systems (IROS)}, Pittsburgh, PA, USA, 2026. (accepted)
+
+\section{Technical Certifications}
+\sectionrule
+\fontsize{9}{11}\selectfont
+Data Science \& Analytics Career Paths \& Certifications: First Steps, Python Essential Training, Learning
+Python, Learning C++, Learning C\#, CompTIA A+, Network+, Microsoft MCP, High Threat Protection, First
+Responder, Tactical Casualty Combat Care Medic, Spanish Linguist - Level 3, FEMA National Response
+Framework Intro, FEMA Emergency Management Institute, National Incident Management Systems Emergency
+Management Institute, Advanced Open Water Diver, Linux for Robotics; Fusion 360, Qground Control, Blue
+Robotics Robot Controls, Hycat Robotic Controls, Windows Enterprise Desktop Support, Basic Life Support --
+Provider, Active Shooter Responder, Non-Lethal Weapons
+
+\section{Honors \& Awards}
+\sectionrule
+\fontsize{9}{11}\selectfont
+\centerline{Good Conduct Medal, National Defense Medal, Global War on Terrorism Medal, Navy/Marine Corps}
+\centerline{Overseas Medal, Expert M9/M4 Medals, Red Cross volunteer pin (2000+ hours of volunteer time),}
+\centerline{ADMIRE Fellowship Award 2024, Dean's List 2019}
+
+\end{document}
