@@ -309,13 +309,26 @@
             padding:2rem;
             background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
             position:relative;overflow:hidden;
+            display:flex;align-items:center;gap:1.5rem;
         }
         .proj-top::before{
             content:'';position:absolute;top:-30px;right:-30px;
             width:120px;height:120px;
             border:2px solid rgba(0,180,216,0.1);border-radius:50%;
         }
-        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;position:relative;z-index:1}
+        .proj-thumb{
+            width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0;
+            border:3px solid rgba(0,180,216,0.3);
+            box-shadow:0 0 20px rgba(0,180,216,0.15);
+            position:relative;z-index:1;
+            transition:all 0.3s;
+        }
+        .proj:hover .proj-thumb{
+            border-color:var(--cyan);
+            box-shadow:0 0 30px rgba(0,180,216,0.3);
+        }
+        .proj-top-text{position:relative;z-index:1}
+        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
         .proj-tag{
             display:inline-block;
             background:rgba(0,180,216,0.15);border:1px solid rgba(0,180,216,0.3);
@@ -687,8 +700,11 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3 data-i18n="proj1_title">Event-Triggered Coverage Planning</h3>
-                <span class="proj-tag" data-i18n="proj1_tag">PhD Research</span>
+                <img src="proj-coverage.webp" alt="ASV towing underwater sensor" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj1_title">Event-Triggered Coverage Planning</h3>
+                    <span class="proj-tag" data-i18n="proj1_tag">PhD Research</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj1_desc">Adaptive coverage algorithms for autonomous marine sensing across drones, AUVs, and surface vehicles. Validated through CFD analysis and real-world ASV/ROV field deployments.</p>
@@ -702,8 +718,11 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3 data-i18n="proj2_title">AI-Driven Heterogeneous Robot Teams</h3>
-                <span class="proj-tag" data-i18n="proj2_tag">Published</span>
+                <img src="proj-robots.jpg" alt="Heterogeneous robot team under bridge" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj2_title">AI-Driven Heterogeneous Robot Teams</h3>
+                    <span class="proj-tag" data-i18n="proj2_tag">Published</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj2_desc">Multi-agent systems for autonomous monitoring and critical infrastructure resilience. Privacy-preserving data collection using differential privacy for heterogeneous marine robot teams.</p>
@@ -717,8 +736,11 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>SEAQUEST</h3>
-                <span class="proj-tag" data-i18n="proj3_tag">MS Capstone</span>
+                <img src="proj-seaquest.webp" alt="SEAQUEST vessel detection" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3>SEAQUEST</h3>
+                    <span class="proj-tag" data-i18n="proj3_tag">MS Capstone</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj3_desc">CNN-based vessel detection from electro-optical and synthetic aperture radar imagery with decision-tree collision avoidance for autonomous navigation.</p>
