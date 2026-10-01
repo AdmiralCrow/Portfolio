@@ -34,7 +34,7 @@
             overflow-x:hidden;
         }
 
-        /* ═══════ NAV ═══════ */
+        /* NAV */
         nav{
             background:rgba(0,24,48,0.85);
             backdrop-filter:blur(20px);
@@ -52,7 +52,7 @@
             text-transform:uppercase;
         }
         .logo span{color:var(--text-dim);font-weight:400;font-size:0.85rem;letter-spacing:1px;margin-left:0.5rem}
-        nav ul{list-style:none;display:flex;gap:2rem}
+        nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
         nav a{
             color:var(--text-dim);text-decoration:none;font-weight:500;font-size:0.95rem;
             transition:color 0.3s;position:relative;
@@ -64,13 +64,83 @@
         nav a:hover{color:var(--cyan)}
         nav a:hover::after{width:100%}
 
-        /* ═══════ HERO ═══════ */
+        .lang-toggle{
+            background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);
+            color:var(--cyan);padding:0.35rem 0.8rem;border-radius:20px;
+            font-size:0.8rem;font-weight:600;cursor:pointer;
+            font-family:'JetBrains Mono',monospace;
+            transition:all 0.3s;letter-spacing:1px;
+        }
+        .lang-toggle:hover{background:rgba(0,180,216,0.25);border-color:var(--cyan)}
+
+        /* HERO */
         .hero{
             position:relative;
             padding:8rem 2rem 10rem;
             text-align:center;
             overflow:hidden;
             background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);
+        }
+
+        /* AUV Scene */
+        .auv-scene{
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            pointer-events:none;overflow:hidden;
+        }
+        .auv-scene svg{
+            position:absolute;bottom:0;left:0;
+            width:100%;height:100%;
+        }
+
+        .auv-group{
+            animation:auvDrift 20s ease-in-out infinite;
+        }
+        @keyframes auvDrift{
+            0%{transform:translate(0,0)}
+            25%{transform:translate(40px,-15px)}
+            50%{transform:translate(80px,5px)}
+            75%{transform:translate(30px,-10px)}
+            100%{transform:translate(0,0)}
+        }
+
+        .auv-ping{
+            animation:pingPulse 3s ease-out infinite;
+            transform-origin:center;
+        }
+        .auv-ping:nth-child(2){animation-delay:0.8s}
+        .auv-ping:nth-child(3){animation-delay:1.6s}
+
+        @keyframes pingPulse{
+            0%{r:8;opacity:0.7}
+            100%{r:60;opacity:0}
+        }
+
+        .auv-light{
+            animation:lightFlicker 4s ease-in-out infinite alternate;
+        }
+        @keyframes lightFlicker{
+            0%{opacity:0.12}
+            50%{opacity:0.2}
+            100%{opacity:0.1}
+        }
+
+        .coral-glow{
+            animation:coralPulse 5s ease-in-out infinite alternate;
+        }
+        @keyframes coralPulse{
+            0%{opacity:0.3}
+            100%{opacity:0.6}
+        }
+
+        .bubble{
+            animation:bubbleRise 6s ease-in infinite;
+        }
+        .bubble:nth-child(2){animation-delay:2s;animation-duration:7s}
+        .bubble:nth-child(3){animation-delay:4s;animation-duration:5s}
+
+        @keyframes bubbleRise{
+            0%{transform:translateY(0);opacity:0.4}
+            100%{transform:translateY(-200px);opacity:0}
         }
 
         /* Sonar rings */
@@ -95,7 +165,7 @@
             100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}
         }
 
-        /* Animated wave SVG at bottom of hero */
+        /* Wave divider */
         .wave-divider{
             position:absolute;bottom:-2px;left:0;width:100%;
             line-height:0;
@@ -155,7 +225,7 @@
             transform:translateY(-3px);
         }
 
-        /* ═══════ SECTION COMMON ═══════ */
+        /* SECTION COMMON */
         .sec{
             max-width:1200px;margin:0 auto;
             padding:5rem 2rem;
@@ -173,7 +243,7 @@
             background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;
         }
 
-        /* ═══════ ABOUT ═══════ */
+        /* ABOUT */
         .about-grid{
             display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center;
         }
@@ -199,7 +269,7 @@
         }
         .profile-role{color:var(--cyan);font-size:0.9rem;font-weight:500;margin-top:0.3rem}
 
-        /* ═══════ SKILLS ═══════ */
+        /* SKILLS */
         .skills-row{
             display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
             margin-top:3rem;
@@ -219,7 +289,7 @@
         .skill-card h4{color:var(--white);font-size:1rem;margin-bottom:0.6rem;font-weight:700}
         .skill-card p{color:var(--text-dim);font-size:0.85rem;line-height:1.6}
 
-        /* ═══════ PROJECTS ═══════ */
+        /* PROJECTS */
         .proj-grid{
             display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:2rem;
         }
@@ -239,13 +309,26 @@
             padding:2rem;
             background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
             position:relative;overflow:hidden;
+            display:flex;align-items:center;gap:1.5rem;
         }
         .proj-top::before{
             content:'';position:absolute;top:-30px;right:-30px;
             width:120px;height:120px;
             border:2px solid rgba(0,180,216,0.1);border-radius:50%;
         }
-        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;position:relative;z-index:1}
+        .proj-thumb{
+            width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0;
+            border:3px solid rgba(0,180,216,0.3);
+            box-shadow:0 0 20px rgba(0,180,216,0.15);
+            position:relative;z-index:1;
+            transition:all 0.3s;
+        }
+        .proj:hover .proj-thumb{
+            border-color:var(--cyan);
+            box-shadow:0 0 30px rgba(0,180,216,0.3);
+        }
+        .proj-top-text{position:relative;z-index:1}
+        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
         .proj-tag{
             display:inline-block;
             background:rgba(0,180,216,0.15);border:1px solid rgba(0,180,216,0.3);
@@ -272,7 +355,7 @@
             color:var(--success);font-weight:600;font-size:0.85rem;
         }
 
-        /* ═══════ PUBLICATIONS ═══════ */
+        /* PUBLICATIONS */
         .pub{
             background:linear-gradient(135deg,rgba(0,42,78,0.4),rgba(0,24,48,0.6));
             border:1px solid rgba(52,211,153,0.15);
@@ -291,7 +374,7 @@
         .pub .venue strong{color:var(--cyan)}
         .pub .doi{color:var(--ocean);font-size:0.85rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace}
 
-        /* ═══════ EXPERIENCE ═══════ */
+        /* EXPERIENCE */
         .timeline{position:relative;padding-left:3rem}
         .timeline::before{
             content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
@@ -310,7 +393,7 @@
         .tl-item p{color:var(--text-dim);font-size:0.95rem}
         .tl-item p strong{color:var(--white)}
 
-        /* ═══════ CONTACT ═══════ */
+        /* CONTACT */
         .contact-grid{
             display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;
         }
@@ -330,7 +413,7 @@
         .contact-card a{color:var(--cyan);text-decoration:none;font-weight:500;font-size:0.9rem;transition:color 0.3s}
         .contact-card a:hover{color:var(--cyan-glow)}
 
-        /* ═══════ FOOTER ═══════ */
+        /* FOOTER */
         footer{
             border-top:1px solid rgba(0,180,216,0.1);
             text-align:center;padding:3rem 2rem;
@@ -338,7 +421,7 @@
         }
         footer .brand{color:var(--cyan);font-weight:700;font-size:1rem;margin-bottom:0.5rem}
 
-        /* ═══════ ANIMATIONS ═══════ */
+        /* ANIMATIONS */
         @keyframes slideUp{
             from{opacity:0;transform:translateY(40px)}
             to{opacity:1;transform:translateY(0)}
@@ -347,11 +430,10 @@
             from{opacity:0}to{opacity:1}
         }
 
-        /* Scroll reveal */
         .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
         .reveal.visible{opacity:1;transform:translateY(0)}
 
-        /* ═══════ RESPONSIVE ═══════ */
+        /* RESPONSIVE */
         @media(max-width:768px){
             nav ul{gap:1rem;font-size:0.85rem}
             .hero{padding:5rem 1.5rem 7rem}
@@ -377,18 +459,138 @@
 <!-- NAV -->
 <nav>
     <div class="wrap">
-        <div class="logo">DEVESA <span>// Maritime Autonomy</span></div>
+        <div class="logo">AD <span>// Maritime Robotics</span></div>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" data-i18n="nav_about">About</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+            <li><a href="#research" data-i18n="nav_research">Research</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            <li><button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN | ES</button></li>
         </ul>
     </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+    <!-- AUV scanning coral scene -->
+    <div class="auv-scene">
+        <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="lightBeam" cx="50%" cy="0%" r="80%">
+                    <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#00b4d8" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="coralGrad1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#c44569" stop-opacity="0.3"/>
+                </linearGradient>
+                <linearGradient id="coralGrad2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f78fb3" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#e66767" stop-opacity="0.2"/>
+                </linearGradient>
+                <linearGradient id="coralGrad3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ff9ff3" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#c44569" stop-opacity="0.15"/>
+                </linearGradient>
+                <linearGradient id="seaweedGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#1dd1a1" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#10ac84" stop-opacity="0.2"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Ocean floor -->
+            <path d="M0,680 Q200,660 400,670 Q600,675 800,665 Q1000,660 1200,670 Q1350,675 1440,668 L1440,700 L0,700 Z"
+                  fill="rgba(0,42,78,0.6)"/>
+
+            <!-- Coral formations -->
+            <g class="coral-glow">
+                <!-- Branching coral 1 -->
+                <path d="M280,670 Q282,640 275,620 Q270,610 265,595 M280,670 Q285,635 290,615 Q295,600 288,585
+                         M280,670 Q278,645 270,630 M280,670 Q290,650 298,635"
+                      stroke="url(#coralGrad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Fan coral 1 -->
+                <ellipse cx="320" cy="640" rx="25" ry="35" fill="url(#coralGrad2)" transform="rotate(-5,320,640)"/>
+                <ellipse cx="325" cy="645" rx="18" ry="28" fill="none" stroke="rgba(247,143,179,0.3)" stroke-width="1"/>
+
+                <!-- Branching coral 2 -->
+                <path d="M750,668 Q748,645 740,625 Q735,610 742,595 M750,668 Q755,640 762,620 Q768,608 760,592
+                         M750,668 Q745,650 738,638 M750,668 Q758,648 765,635"
+                      stroke="url(#coralGrad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <!-- Brain coral -->
+                <ellipse cx="820" cy="660" rx="30" ry="18" fill="rgba(255,107,107,0.25)"/>
+                <path d="M795,658 Q808,652 820,658 Q832,664 845,658" stroke="rgba(255,107,107,0.3)" stroke-width="1" fill="none"/>
+                <path d="M798,662 Q810,656 822,662 Q834,668 843,662" stroke="rgba(255,107,107,0.25)" stroke-width="1" fill="none"/>
+
+                <!-- Fan coral 2 -->
+                <ellipse cx="1050" cy="638" rx="28" ry="38" fill="url(#coralGrad3)" transform="rotate(8,1050,638)"/>
+
+                <!-- Branching coral 3 -->
+                <path d="M1100,670 Q1098,648 1092,630 Q1088,618 1095,605 M1100,670 Q1105,645 1112,628 Q1118,615 1110,600
+                         M1100,670 Q1095,652 1088,640"
+                      stroke="url(#coralGrad2)" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </g>
+
+            <!-- Seaweed -->
+            <g>
+                <path d="M180,670 Q175,645 180,625 Q185,608 178,590" stroke="url(#seaweedGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
+                    <animate attributeName="d"
+                        values="M180,670 Q175,645 180,625 Q185,608 178,590;
+                                M180,670 Q185,645 178,625 Q173,608 180,590;
+                                M180,670 Q175,645 180,625 Q185,608 178,590"
+                        dur="4s" repeatCount="indefinite"/>
+                </path>
+                <path d="M480,672 Q476,650 482,632 Q488,618 480,600" stroke="url(#seaweedGrad)" stroke-width="2" fill="none" stroke-linecap="round">
+                    <animate attributeName="d"
+                        values="M480,672 Q476,650 482,632 Q488,618 480,600;
+                                M480,672 Q486,650 478,632 Q472,618 482,600;
+                                M480,672 Q476,650 482,632 Q488,618 480,600"
+                        dur="5s" repeatCount="indefinite"/>
+                </path>
+                <path d="M950,670 Q946,648 952,630 Q958,615 950,598" stroke="url(#seaweedGrad)" stroke-width="2" fill="none" stroke-linecap="round">
+                    <animate attributeName="d"
+                        values="M950,670 Q946,648 952,630 Q958,615 950,598;
+                                M950,670 Q956,648 948,630 Q942,615 952,598;
+                                M950,670 Q946,648 952,630 Q958,615 950,598"
+                        dur="4.5s" repeatCount="indefinite"/>
+                </path>
+            </g>
+
+            <!-- AUV group -->
+            <g class="auv-group">
+                <!-- Light beam cone from AUV down to coral -->
+                <polygon points="680,395 600,660 760,660" fill="url(#lightBeam)" class="auv-light"/>
+
+                <!-- Sonar ping rings -->
+                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="1.5" class="auv-ping" opacity="0"/>
+                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="1" class="auv-ping" opacity="0"/>
+                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="0.8" class="auv-ping" opacity="0"/>
+
+                <!-- AUV body -->
+                <ellipse cx="680" cy="390" rx="50" ry="16" fill="rgba(0,61,107,0.9)" stroke="#00b4d8" stroke-width="1.5"/>
+                <!-- AUV nose -->
+                <path d="M630,390 Q620,390 625,385 Q628,382 630,384 Z" fill="rgba(0,180,216,0.5)"/>
+                <!-- AUV tail/propeller -->
+                <path d="M730,390 L745,378 L745,382 L738,390 L745,398 L745,402 Z" fill="rgba(0,61,107,0.8)" stroke="#00b4d8" stroke-width="1"/>
+                <!-- AUV viewport -->
+                <ellipse cx="660" cy="388" rx="8" ry="5" fill="rgba(0,180,216,0.4)" stroke="#00b4d8" stroke-width="0.8"/>
+                <!-- AUV top fin -->
+                <path d="M690,374 L700,365 L710,374" fill="rgba(0,61,107,0.8)" stroke="#00b4d8" stroke-width="1"/>
+                <!-- AUV sensor light -->
+                <circle cx="635" cy="390" r="2.5" fill="#00b4d8" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+                </circle>
+            </g>
+
+            <!-- Bubbles -->
+            <g>
+                <circle cx="720" cy="380" r="2" fill="rgba(144,224,239,0.3)" class="bubble"/>
+                <circle cx="710" cy="375" r="1.5" fill="rgba(144,224,239,0.25)" class="bubble"/>
+                <circle cx="725" cy="385" r="1" fill="rgba(144,224,239,0.2)" class="bubble"/>
+            </g>
+        </svg>
+    </div>
+
     <!-- Sonar animation -->
     <div class="sonar">
         <div class="sonar-ring"></div>
@@ -398,12 +600,12 @@
     </div>
 
     <div class="wrap">
-        <div class="hero-badge"><i class="fas fa-anchor"></i> U.S. Navy Veteran &bull; DoD Secret Clearance</div>
-        <h1>Maritime Autonomy<br>& Robotics</h1>
-        <p>Building autonomous underwater, surface, and aerial robotic systems for critical infrastructure resilience and environmental monitoring.</p>
+        <div class="hero-badge"><i class="fas fa-anchor"></i> <span data-i18n="hero_badge">U.S. Navy Veteran &bull; DoD Secret Clearance</span></div>
+        <h1 data-i18n="hero_title">Maritime Autonomy<br>& Robotics</h1>
+        <p data-i18n="hero_desc">Building autonomous underwater, surface, and aerial robotic systems for critical infrastructure resilience and environmental monitoring.</p>
         <div class="hero-btns">
-            <a href="#projects" class="btn btn-fill"><i class="fas fa-water"></i> View My Work</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+            <a href="#projects" class="btn btn-fill"><i class="fas fa-water"></i> <span data-i18n="hero_btn_work">View My Work</span></a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_btn_contact">Get in Touch</span></a>
         </div>
     </div>
 
@@ -440,20 +642,20 @@
 
 <!-- ABOUT -->
 <div class="sec" id="about">
-    <div class="sec-title">About</div>
-    <h2>Anthony Devesa</h2>
+    <div class="sec-title" data-i18n="sec_about">About</div>
+    <h2 data-i18n="about_name">Anthony Devesa</h2>
     <div class="about-grid reveal">
         <div class="about-text">
-            <p>
+            <p data-i18n="about_p1">
                 I'm a <strong>PhD Candidate in Computer Science</strong> at Florida International University
                 specializing in AI and Robotics, and a <strong>Modeling and Simulation Systems Engineer at Northrop Grumman</strong>.
             </p>
-            <p>
+            <p data-i18n="about_p2">
                 My research focuses on autonomous marine robotics &mdash; designing event-triggered coverage planning
                 algorithms for heterogeneous robot teams (drones, AUVs, ASVs) and developing privacy-preserving
                 multi-agent data collection methods for critical infrastructure monitoring.
             </p>
-            <p>
+            <p data-i18n="about_p3">
                 As a U.S. Navy veteran, I bring discipline and real-world operational perspective to
                 every system I build. I validate my work through CFD analysis and field deployments,
                 and present findings to government and defense stakeholders.
@@ -462,29 +664,29 @@
         <div class="profile-card">
             <img id="profile-photo" src="profile.jpg" alt="Anthony Devesa" class="profile-img">
             <div class="profile-name">Anthony Devesa</div>
-            <div class="profile-role">PhD Candidate &bull; Roboticist</div>
+            <div class="profile-role" data-i18n="profile_role">PhD Candidate &bull; Roboticist</div>
         </div>
     </div>
 
     <div class="skills-row reveal">
         <div class="skill-card">
-            <div class="skill-icon">🤖</div>
-            <h4>AI & Machine Learning</h4>
+            <div class="skill-icon">&#129302;</div>
+            <h4 data-i18n="skill_ai">AI & Machine Learning</h4>
             <p>TensorFlow, YOLO, Federated Learning, Differential Privacy, Multi-Agent Systems, RL</p>
         </div>
         <div class="skill-card">
-            <div class="skill-icon">🌊</div>
-            <h4>Robotics & Simulation</h4>
+            <div class="skill-icon">&#127754;</div>
+            <h4 data-i18n="skill_robotics">Robotics & Simulation</h4>
             <p>ROS, Isaac Lab/Sim, Arduino, QGroundControl, BlueRobotics, Hycat Controls</p>
         </div>
         <div class="skill-card">
-            <div class="skill-icon">⚙️</div>
-            <h4>Programming</h4>
+            <div class="skill-icon">&#9881;&#65039;</div>
+            <h4 data-i18n="skill_prog">Programming</h4>
             <p>Python, C++, NumPy, Pandas, Matplotlib, Docker, Fusion 360</p>
         </div>
         <div class="skill-card">
-            <div class="skill-icon">🛡️</div>
-            <h4>Systems & Security</h4>
+            <div class="skill-icon">&#128737;&#65039;</div>
+            <h4 data-i18n="skill_sys">Systems & Security</h4>
             <p>MBSE, Google Cloud, Windows Server, Security Analysis, Project Management</p>
         </div>
     </div>
@@ -492,93 +694,102 @@
 
 <!-- PROJECTS -->
 <div class="sec" id="projects">
-    <div class="sec-title">Projects</div>
-    <h2>Featured Work</h2>
+    <div class="sec-title" data-i18n="sec_projects">Projects</div>
+    <h2 data-i18n="projects_heading">Featured Work</h2>
     <div class="proj-grid">
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>Event-Triggered Coverage Planning</h3>
-                <span class="proj-tag">PhD Research</span>
+                <img src="ASV Drag Exp.png" alt="ASV towing underwater sensor" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj1_title">Event-Triggered Coverage Planning</h3>
+                    <span class="proj-tag" data-i18n="proj1_tag">PhD Research</span>
+                </div>
             </div>
             <div class="proj-body">
-                <p>Adaptive coverage algorithms for autonomous marine sensing across drones, AUVs, and surface vehicles. Validated through CFD analysis and real-world ASV/ROV field deployments.</p>
+                <p data-i18n="proj1_desc">Adaptive coverage algorithms for autonomous marine sensing across drones, AUVs, and surface vehicles. Validated through CFD analysis and real-world ASV/ROV field deployments.</p>
                 <div class="proj-techs">
                     <span class="tech">Python</span><span class="tech">ROS</span><span class="tech">CFD</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
-                <div class="proj-status">✓ Accepted &mdash; IROS 2026</div>
+                <a href="https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <div class="proj-status" data-i18n="proj1_status">&#10003; Accepted &mdash; IROS 2026</div>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>AI-Driven Heterogeneous Robot Teams</h3>
-                <span class="proj-tag">Published</span>
+                <img src="WorkingPlanes.jpeg" alt="Heterogeneous robot team under bridge" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj2_title">AI-Driven Heterogeneous Robot Teams</h3>
+                    <span class="proj-tag" data-i18n="proj2_tag">Published</span>
+                </div>
             </div>
             <div class="proj-body">
-                <p>Multi-agent systems for autonomous monitoring and critical infrastructure resilience. Privacy-preserving data collection using differential privacy for heterogeneous marine robot teams.</p>
+                <p data-i18n="proj2_desc">Multi-agent systems for autonomous monitoring and critical infrastructure resilience. Privacy-preserving data collection using differential privacy for heterogeneous marine robot teams.</p>
                 <div class="proj-techs">
                     <span class="tech">Multi-Agent</span><span class="tech">Diff. Privacy</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
-                <div class="proj-status">✓ Published &mdash; OCEANS 2025</div>
+                <a href="https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <div class="proj-status" data-i18n="proj2_status">&#10003; Published &mdash; OCEANS 2025</div>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>SEAQUEST</h3>
-                <span class="proj-tag">MS Capstone</span>
+                <img src="seaquest.gif" alt="SEAQUEST vessel detection" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3>SEAQUEST</h3>
+                    <span class="proj-tag" data-i18n="proj3_tag">MS Capstone</span>
+                </div>
             </div>
             <div class="proj-body">
-                <p>CNN-based vessel detection from electro-optical and synthetic aperture radar imagery with decision-tree collision avoidance for autonomous navigation.</p>
+                <p data-i18n="proj3_desc">CNN-based vessel detection from electro-optical and synthetic aperture radar imagery with decision-tree collision avoidance for autonomous navigation.</p>
                 <div class="proj-techs">
                     <span class="tech">TensorFlow</span><span class="tech">YOLO</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/SEAQUEST" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <a href="https://github.com/AdmiralCrow/SEAQUEST" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
                 <h3>Odin AI</h3>
-                <span class="proj-tag">Personal Project</span>
+                <span class="proj-tag" data-i18n="proj4_tag">Personal Project</span>
             </div>
             <div class="proj-body">
-                <p>Local-first, multi-agent AI assistant with 13 specialized agents, local LLM orchestration, web dashboard, voice interface, and 800+ test suite. Containerized with Docker.</p>
+                <p data-i18n="proj4_desc">Local-first, multi-agent AI assistant with 13 specialized agents, local LLM orchestration, web dashboard, voice interface, and 800+ test suite. Containerized with Docker.</p>
                 <div class="proj-techs">
                     <span class="tech">Python</span><span class="tech">Docker</span><span class="tech">React</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/Odin" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <a href="https://github.com/AdmiralCrow/Odin" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>BlueROV Platform</h3>
-                <span class="proj-tag">Ongoing</span>
+                <h3 data-i18n="proj5_title">BlueROV Platform</h3>
+                <span class="proj-tag" data-i18n="proj5_tag">Ongoing</span>
             </div>
             <div class="proj-body">
-                <p>Autonomous Underwater Vehicle platform with ROS integration, autonomous navigation, reinforcement learning pipelines, and real-world field deployment support.</p>
+                <p data-i18n="proj5_desc">Autonomous Underwater Vehicle platform with ROS integration, autonomous navigation, reinforcement learning pipelines, and real-world field deployment support.</p>
                 <div class="proj-techs">
                     <span class="tech">ROS</span><span class="tech">Arduino</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/BlueRov" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <a href="https://github.com/AdmiralCrow/BlueRov" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>CAD & Additive Manufacturing</h3>
-                <span class="proj-tag">Design</span>
+                <h3 data-i18n="proj6_title">CAD & Additive Manufacturing</h3>
+                <span class="proj-tag" data-i18n="proj6_tag">Design</span>
             </div>
             <div class="proj-body">
-                <p>Flight simulator console, CNC machine cabinet, 3D printer integration, and custom robotics parts fabricated using modern CAD and additive manufacturing tools.</p>
+                <p data-i18n="proj6_desc">Flight simulator console, CNC machine cabinet, 3D printer integration, and custom robotics parts fabricated using modern CAD and additive manufacturing tools.</p>
                 <div class="proj-techs">
                     <span class="tech">Fusion 360</span><span class="tech">GRBL</span><span class="tech">Blender</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/CAD-Designs" class="proj-link"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                <a href="https://github.com/AdmiralCrow/CAD-Designs" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
@@ -587,8 +798,8 @@
 
 <!-- PUBLICATIONS -->
 <div class="sec" id="research">
-    <div class="sec-title">Research</div>
-    <h2>Published Work</h2>
+    <div class="sec-title" data-i18n="sec_research">Research</div>
+    <h2 data-i18n="research_heading">Published Work</h2>
 
     <div class="pub reveal">
         <h4>AI-Driven Heterogeneous Robot Teams for Critical Infrastructure Resilience</h4>
@@ -605,7 +816,7 @@
     </div>
 
     <div class="pub reveal">
-        <h4>Event-Triggered Coverage Planning for Towable Sensing Systems <span style="color:var(--success)">(Accepted)</span></h4>
+        <h4>Event-Triggered Coverage Planning for Towable Sensing Systems <span style="color:var(--success)" data-i18n="accepted">(Accepted)</span></h4>
         <p class="authors">A. Devesa, D. Correa, C. Roa, L. Bobadilla, R. N. Smith and M. H. Amini</p>
         <p class="venue"><strong>IEEE/RSJ IROS</strong>, Pittsburgh, PA, USA, 2026</p>
     </div>
@@ -613,50 +824,50 @@
 
 <!-- EXPERIENCE -->
 <div class="sec">
-    <div class="sec-title">Experience</div>
-    <h2>Career Timeline</h2>
+    <div class="sec-title" data-i18n="sec_experience">Experience</div>
+    <h2 data-i18n="experience_heading">Career Timeline</h2>
     <div class="timeline">
         <div class="tl-item reveal">
-            <h4>Modeling and Simulation Systems Engineer</h4>
-            <div class="tl-date">May 2026 &ndash; Present</div>
+            <h4 data-i18n="exp1_title">Modeling and Simulation Systems Engineer</h4>
+            <div class="tl-date" data-i18n="exp1_date">May 2026 &ndash; Present</div>
             <p><strong>Northrop Grumman</strong></p>
-            <p>Apply AI/ML techniques to systems modeling and simulation workflows supporting MBSE. Develop validated simulation environments for mission-critical autonomous platforms.</p>
+            <p data-i18n="exp1_desc">Apply AI/ML techniques to systems modeling and simulation workflows supporting MBSE. Develop validated simulation environments for mission-critical autonomous platforms.</p>
         </div>
         <div class="tl-item reveal">
-            <h4>Roboticist, PhD Candidate</h4>
-            <div class="tl-date">Jan 2024 &ndash; Present</div>
+            <h4 data-i18n="exp2_title">Roboticist, PhD Candidate</h4>
+            <div class="tl-date" data-i18n="exp2_date">Jan 2024 &ndash; Present</div>
             <p><strong>Florida International University</strong> &mdash; MORA LAB, SOLID LAB, CREST, IoE</p>
-            <p>Design event-triggered coverage planning algorithms. Manage research teams and validate mission-level trade-offs via CFD and field deployments.</p>
+            <p data-i18n="exp2_desc">Design event-triggered coverage planning algorithms. Manage research teams and validate mission-level trade-offs via CFD and field deployments.</p>
         </div>
         <div class="tl-item reveal">
-            <h4>Roboticist, Researcher (CTR)</h4>
-            <div class="tl-date">May 2025 &ndash; Aug 2025</div>
+            <h4 data-i18n="exp3_title">Roboticist, Researcher (CTR)</h4>
+            <div class="tl-date" data-i18n="exp3_date">May 2025 &ndash; Aug 2025</div>
             <p><strong>Naval Research Lab</strong></p>
-            <p>Developed locomotion models for Boston Dynamics Spot in IsaacLab. Enhanced OceanSim with simulated EBS camera for underwater vision.</p>
+            <p data-i18n="exp3_desc">Developed locomotion models for Boston Dynamics Spot in IsaacLab. Enhanced OceanSim with simulated EBS camera for underwater vision.</p>
         </div>
         <div class="tl-item reveal">
-            <h4>Researcher</h4>
-            <div class="tl-date">May 2023 &ndash; Aug 2023</div>
+            <h4 data-i18n="exp4_title">Researcher</h4>
+            <div class="tl-date" data-i18n="exp4_date">May 2023 &ndash; Aug 2023</div>
             <p><strong>Wright-Patterson Air Force Base</strong></p>
-            <p>Research in autonomous systems and robotics technologies.</p>
+            <p data-i18n="exp4_desc">Research in autonomous systems and robotics technologies.</p>
         </div>
         <div class="tl-item reveal">
-            <h4>MA3 Police Officer, USN</h4>
+            <h4 data-i18n="exp5_title">MA3 Police Officer, USN</h4>
             <div class="tl-date">2012 &ndash; 2016</div>
             <p><strong>NAVSTA Guantanamo Bay, Cuba</strong></p>
-            <p>U.S. Navy veteran. Good Conduct Medal, National Defense Medal, Global War on Terrorism Medal.</p>
+            <p data-i18n="exp5_desc">U.S. Navy veteran. Good Conduct Medal, National Defense Medal, Global War on Terrorism Medal.</p>
         </div>
     </div>
 </div>
 
 <!-- CONTACT -->
 <div class="sec" id="contact">
-    <div class="sec-title">Contact</div>
-    <h2>Let's Connect</h2>
+    <div class="sec-title" data-i18n="sec_contact">Contact</div>
+    <h2 data-i18n="contact_heading">Let's Connect</h2>
     <div class="contact-grid">
         <div class="contact-card reveal">
             <i class="fas fa-envelope"></i>
-            <h4>Email</h4>
+            <h4 data-i18n="contact_email">Email</h4>
             <a href="mailto:DevesaAnthony@gmail.com">DevesaAnthony@gmail.com</a>
         </div>
         <div class="contact-card reveal">
@@ -671,7 +882,7 @@
         </div>
         <div class="contact-card reveal">
             <i class="fas fa-phone"></i>
-            <h4>Phone</h4>
+            <h4 data-i18n="contact_phone">Phone</h4>
             <a href="tel:+13052051557">305-205-1557</a>
         </div>
     </div>
@@ -679,13 +890,116 @@
 
 <!-- FOOTER -->
 <footer>
-    <div class="brand">DEVESA // Maritime Autonomy & Robotics</div>
-    <p>&copy; 2026 Anthony Devesa &bull; Roboticist &bull; AI Researcher &bull; PhD Candidate</p>
-    <p style="margin-top:0.5rem;font-size:0.8rem">DoD Secret Clearance &bull; Published Researcher &bull; U.S. Navy Veteran</p>
+    <div class="brand">AD // Maritime Robotics</div>
+    <p data-i18n="footer_info">&copy; 2026 Anthony Devesa &bull; Roboticist &bull; AI Researcher &bull; PhD Candidate</p>
+    <p style="margin-top:0.5rem;font-size:0.8rem" data-i18n="footer_creds">DoD Secret Clearance &bull; Published Researcher &bull; U.S. Navy Veteran</p>
 </footer>
 
-<!-- Scroll Reveal Script -->
 <script>
+const translations = {
+    es: {
+        nav_about: "Acerca",
+        nav_projects: "Proyectos",
+        nav_research: "Investigación",
+        nav_contact: "Contacto",
+        hero_badge: "Veterano de la Marina de EE.UU. • Autorización Secreta del DoD",
+        hero_title: "Autonomía Marítima<br>y Robótica",
+        hero_desc: "Construyendo sistemas robóticos autónomos submarinos, de superficie y aéreos para la resiliencia de infraestructura crítica y monitoreo ambiental.",
+        hero_btn_work: "Ver Mi Trabajo",
+        hero_btn_contact: "Contáctame",
+        sec_about: "Acerca",
+        about_name: "Anthony Devesa",
+        about_p1: "Soy <strong>candidato a doctorado en Ciencias de la Computación</strong> en Florida International University, especializado en IA y Robótica, e <strong>Ingeniero de Modelado y Simulación de Sistemas en Northrop Grumman</strong>.",
+        about_p2: "Mi investigación se enfoca en robótica marina autónoma — diseñando algoritmos de planificación de cobertura activados por eventos para equipos heterogéneos de robots (drones, AUVs, ASVs) y desarrollando métodos de recolección de datos multi-agente que preservan la privacidad para el monitoreo de infraestructura crítica.",
+        about_p3: "Como veterano de la Marina de EE.UU., aporto disciplina y perspectiva operacional del mundo real a cada sistema que construyo. Valido mi trabajo a través de análisis CFD y despliegues de campo, y presento hallazgos a partes interesadas del gobierno y la defensa.",
+        profile_role: "Candidato a PhD • Roboticista",
+        skill_ai: "IA y Aprendizaje Automático",
+        skill_robotics: "Robótica y Simulación",
+        skill_prog: "Programación",
+        skill_sys: "Sistemas y Seguridad",
+        sec_projects: "Proyectos",
+        projects_heading: "Trabajo Destacado",
+        proj1_title: "Planificación de Cobertura Activada por Eventos",
+        proj1_tag: "Investigación Doctoral",
+        proj1_desc: "Algoritmos de cobertura adaptativa para detección marina autónoma con drones, AUVs y vehículos de superficie. Validados mediante análisis CFD y despliegues reales con ASV/ROV.",
+        proj1_status: "✓ Aceptado — IROS 2026",
+        proj2_title: "Equipos Heterogéneos de Robots con IA",
+        proj2_tag: "Publicado",
+        proj2_desc: "Sistemas multi-agente para monitoreo autónomo y resiliencia de infraestructura crítica. Recolección de datos con privacidad diferencial para equipos heterogéneos de robots marinos.",
+        proj2_status: "✓ Publicado — OCEANS 2025",
+        proj3_tag: "Proyecto de Maestría",
+        proj3_desc: "Detección de embarcaciones basada en CNN a partir de imágenes electro-ópticas y radar de apertura sintética con evasión de colisiones por árboles de decisión para navegación autónoma.",
+        proj4_tag: "Proyecto Personal",
+        proj4_desc: "Asistente de IA multi-agente local con 13 agentes especializados, orquestación de LLM local, panel web, interfaz de voz y más de 800 pruebas. Contenedorizado con Docker.",
+        proj5_title: "Plataforma BlueROV",
+        proj5_tag: "En Curso",
+        proj5_desc: "Plataforma de Vehículo Submarino Autónomo con integración ROS, navegación autónoma, pipelines de aprendizaje por refuerzo y soporte para despliegues de campo.",
+        proj6_title: "CAD y Manufactura Aditiva",
+        proj6_tag: "Diseño",
+        proj6_desc: "Consola de simulador de vuelo, gabinete de máquina CNC, integración de impresora 3D y piezas de robótica personalizadas fabricadas con herramientas CAD modernas.",
+        view_repo: "Ver Repositorio",
+        sec_research: "Investigación",
+        research_heading: "Trabajo Publicado",
+        accepted: "(Aceptado)",
+        sec_experience: "Experiencia",
+        experience_heading: "Trayectoria Profesional",
+        exp1_title: "Ingeniero de Modelado y Simulación de Sistemas",
+        exp1_date: "Mayo 2026 – Presente",
+        exp1_desc: "Aplicar técnicas de IA/ML a flujos de trabajo de modelado y simulación de sistemas que respaldan MBSE. Desarrollar entornos de simulación validados para plataformas autónomas de misión crítica.",
+        exp2_title: "Roboticista, Candidato a PhD",
+        exp2_date: "Enero 2024 – Presente",
+        exp2_desc: "Diseñar algoritmos de planificación de cobertura activados por eventos. Gestionar equipos de investigación y validar compensaciones a nivel de misión mediante CFD y despliegues de campo.",
+        exp3_title: "Roboticista, Investigador (CTR)",
+        exp3_date: "Mayo 2025 – Agosto 2025",
+        exp3_desc: "Desarrollé modelos de locomoción para Boston Dynamics Spot en IsaacLab. Mejoré OceanSim con cámara EBS simulada para visión submarina.",
+        exp4_title: "Investigador",
+        exp4_date: "Mayo 2023 – Agosto 2023",
+        exp4_desc: "Investigación en sistemas autónomos y tecnologías de robótica.",
+        exp5_title: "Oficial de Policía MA3, Marina de EE.UU.",
+        exp5_desc: "Veterano de la Marina de EE.UU. Medalla de Buena Conducta, Medalla de Defensa Nacional, Medalla de la Guerra Global contra el Terrorismo.",
+        sec_contact: "Contacto",
+        contact_heading: "Conectemos",
+        contact_email: "Correo",
+        contact_phone: "Teléfono",
+        footer_info: "© 2026 Anthony Devesa • Roboticista • Investigador de IA • Candidato a PhD",
+        footer_creds: "Autorización Secreta del DoD • Investigador Publicado • Veterano de la Marina de EE.UU."
+    }
+};
+
+const enCache = {};
+let currentLang = 'en';
+
+function collectEnglish() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        enCache[el.dataset.i18n] = el.innerHTML;
+    });
+}
+
+function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (lang === 'es' && translations.es[key]) {
+            el.innerHTML = translations.es[key];
+        } else if (lang === 'en' && enCache[key]) {
+            el.innerHTML = enCache[key];
+        }
+    });
+    document.getElementById('langToggle').textContent = lang === 'es' ? 'ES | EN' : 'EN | ES';
+}
+
+function toggleLang() {
+    setLang(currentLang === 'en' ? 'es' : 'en');
+}
+
+collectEnglish();
+
+if (navigator.language && navigator.language.startsWith('es')) {
+    setLang('es');
+}
+
+// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
