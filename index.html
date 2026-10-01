@@ -79,10 +79,10 @@
             padding:8rem 2rem 10rem;
             text-align:center;
             overflow:hidden;
-            background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);
+            background:linear-gradient(180deg,#000d1a 0%,#001830 40%,#002040 100%);
         }
 
-        /* AUV Scene */
+        /* Deep ocean scene */
         .auv-scene{
             position:absolute;top:0;left:0;width:100%;height:100%;
             pointer-events:none;overflow:hidden;
@@ -92,77 +92,71 @@
             width:100%;height:100%;
         }
 
-        .auv-group{
-            animation:auvDrift 20s ease-in-out infinite;
+        .sub-group{
+            animation:subDrift 25s ease-in-out infinite;
         }
-        @keyframes auvDrift{
+        @keyframes subDrift{
             0%{transform:translate(0,0)}
-            25%{transform:translate(40px,-15px)}
-            50%{transform:translate(80px,5px)}
-            75%{transform:translate(30px,-10px)}
+            25%{transform:translate(30px,-8px)}
+            50%{transform:translate(60px,4px)}
+            75%{transform:translate(20px,-6px)}
             100%{transform:translate(0,0)}
         }
 
-        .auv-ping{
-            animation:pingPulse 3s ease-out infinite;
+        .sub-light{
+            animation:beamPulse 5s ease-in-out infinite alternate;
+        }
+        @keyframes beamPulse{
+            0%{opacity:0.08}
+            50%{opacity:0.15}
+            100%{opacity:0.06}
+        }
+
+        .sonar-arc{
+            animation:sonarArc 4s ease-out infinite;
             transform-origin:center;
+            transform-box:fill-box;
         }
-        .auv-ping:nth-child(2){animation-delay:0.8s}
-        .auv-ping:nth-child(3){animation-delay:1.6s}
+        .sonar-arc:nth-child(2){animation-delay:1s}
+        .sonar-arc:nth-child(3){animation-delay:2s}
+        .sonar-arc:nth-child(4){animation-delay:3s}
 
-        @keyframes pingPulse{
-            0%{r:8;opacity:0.7}
-            100%{r:60;opacity:0}
-        }
-
-        .auv-light{
-            animation:lightFlicker 4s ease-in-out infinite alternate;
-        }
-        @keyframes lightFlicker{
-            0%{opacity:0.12}
-            50%{opacity:0.2}
-            100%{opacity:0.1}
+        @keyframes sonarArc{
+            0%{opacity:0.6;transform:scale(1)}
+            100%{opacity:0;transform:scale(8)}
         }
 
-        .coral-glow{
-            animation:coralPulse 5s ease-in-out infinite alternate;
+        .light-ray{
+            animation:rayShimmer 8s ease-in-out infinite alternate;
         }
-        @keyframes coralPulse{
-            0%{opacity:0.3}
-            100%{opacity:0.6}
+        .light-ray:nth-child(2){animation-delay:1.5s;animation-duration:10s}
+        .light-ray:nth-child(3){animation-delay:3s;animation-duration:7s}
+        .light-ray:nth-child(4){animation-delay:0.5s;animation-duration:9s}
+        .light-ray:nth-child(5){animation-delay:2s;animation-duration:11s}
+        .light-ray:nth-child(6){animation-delay:4s;animation-duration:9.5s}
+
+        @keyframes rayShimmer{
+            0%{opacity:0.03}
+            50%{opacity:0.08}
+            100%{opacity:0.02}
         }
 
-        .bubble{
-            animation:bubbleRise 6s ease-in infinite;
+        .particle{
+            animation:particleDrift 12s linear infinite;
         }
-        .bubble:nth-child(2){animation-delay:2s;animation-duration:7s}
-        .bubble:nth-child(3){animation-delay:4s;animation-duration:5s}
+        .particle:nth-child(2){animation-delay:3s;animation-duration:15s}
+        .particle:nth-child(3){animation-delay:6s;animation-duration:10s}
+        .particle:nth-child(4){animation-delay:9s;animation-duration:14s}
+        .particle:nth-child(5){animation-delay:1s;animation-duration:11s}
+        .particle:nth-child(6){animation-delay:4s;animation-duration:13s}
+        .particle:nth-child(7){animation-delay:7s;animation-duration:9s}
+        .particle:nth-child(8){animation-delay:2s;animation-duration:16s}
 
-        @keyframes bubbleRise{
-            0%{transform:translateY(0);opacity:0.4}
-            100%{transform:translateY(-200px);opacity:0}
-        }
-
-        /* Sonar rings */
-        .sonar{
-            position:absolute;top:50%;right:8%;
-            width:400px;height:400px;
-            transform:translate(0,-50%);
-            opacity:0.08;
-        }
-        .sonar-ring{
-            position:absolute;border:2px solid var(--cyan);border-radius:50%;
-            top:50%;left:50%;transform:translate(-50%,-50%);
-            animation:sonarPulse 4s ease-out infinite;
-        }
-        .sonar-ring:nth-child(1){width:100px;height:100px;animation-delay:0s}
-        .sonar-ring:nth-child(2){width:200px;height:200px;animation-delay:0.8s}
-        .sonar-ring:nth-child(3){width:300px;height:300px;animation-delay:1.6s}
-        .sonar-ring:nth-child(4){width:400px;height:400px;animation-delay:2.4s}
-
-        @keyframes sonarPulse{
-            0%{opacity:1;transform:translate(-50%,-50%) scale(0.5)}
-            100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}
+        @keyframes particleDrift{
+            0%{transform:translate(0,0);opacity:0}
+            20%{opacity:0.4}
+            80%{opacity:0.3}
+            100%{transform:translate(-60px,-40px);opacity:0}
         }
 
         /* Wave divider */
@@ -306,10 +300,9 @@
             box-shadow:0 20px 60px rgba(0,119,182,0.15);
         }
         .proj-top{
-            padding:2rem;
+            padding:1.5rem 2rem;
             background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
             position:relative;overflow:hidden;
-            display:flex;align-items:center;gap:1.5rem;
         }
         .proj-top::before{
             content:'';position:absolute;top:-30px;right:-30px;
@@ -317,15 +310,15 @@
             border:2px solid rgba(0,180,216,0.1);border-radius:50%;
         }
         .proj-thumb{
-            width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0;
-            border:3px solid rgba(0,180,216,0.3);
-            box-shadow:0 0 20px rgba(0,180,216,0.15);
+            width:100%;height:160px;object-fit:cover;
+            border-radius:8px;margin-bottom:1rem;
+            border:1px solid rgba(0,180,216,0.15);
             position:relative;z-index:1;
             transition:all 0.3s;
         }
         .proj:hover .proj-thumb{
             border-color:var(--cyan);
-            box-shadow:0 0 30px rgba(0,180,216,0.3);
+            box-shadow:0 4px 20px rgba(0,180,216,0.2);
         }
         .proj-top-text{position:relative;z-index:1}
         .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
@@ -472,131 +465,126 @@
 
 <!-- HERO -->
 <section class="hero">
-    <!-- AUV scanning coral scene -->
+    <!-- Deep ocean scene -->
     <div class="auv-scene">
         <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <radialGradient id="lightBeam" cx="50%" cy="0%" r="80%">
-                    <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#00b4d8" stop-opacity="0"/>
+                <radialGradient id="headlight" cx="0%" cy="50%" r="70%" fx="0%" fy="50%">
+                    <stop offset="0%" stop-color="#c0e8ff" stop-opacity="0.4"/>
+                    <stop offset="30%" stop-color="#4da8da" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#003d6b" stop-opacity="0"/>
                 </radialGradient>
-                <linearGradient id="coralGrad1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.6"/>
-                    <stop offset="100%" stop-color="#c44569" stop-opacity="0.3"/>
+                <linearGradient id="rayGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+                    <stop offset="0%" stop-color="#2080b0" stop-opacity="0.2"/>
+                    <stop offset="60%" stop-color="#105080" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#001830" stop-opacity="0"/>
                 </linearGradient>
-                <linearGradient id="coralGrad2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#f78fb3" stop-opacity="0.5"/>
-                    <stop offset="100%" stop-color="#e66767" stop-opacity="0.2"/>
+                <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#001830" stop-opacity="0"/>
+                    <stop offset="60%" stop-color="#001020" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#000a15" stop-opacity="0.9"/>
                 </linearGradient>
-                <linearGradient id="coralGrad3" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#ff9ff3" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#c44569" stop-opacity="0.15"/>
-                </linearGradient>
-                <linearGradient id="seaweedGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#1dd1a1" stop-opacity="0.5"/>
-                    <stop offset="100%" stop-color="#10ac84" stop-opacity="0.2"/>
-                </linearGradient>
+                <radialGradient id="depthGlow" cx="40%" cy="20%" r="70%">
+                    <stop offset="0%" stop-color="#0a3d62" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#001830" stop-opacity="0"/>
+                </radialGradient>
             </defs>
 
-            <!-- Ocean floor -->
-            <path d="M0,680 Q200,660 400,670 Q600,675 800,665 Q1000,660 1200,670 Q1350,675 1440,668 L1440,700 L0,700 Z"
-                  fill="rgba(0,42,78,0.6)"/>
+            <!-- Depth atmosphere -->
+            <rect width="1440" height="700" fill="url(#depthGlow)"/>
 
-            <!-- Coral formations -->
-            <g class="coral-glow">
-                <!-- Branching coral 1 -->
-                <path d="M280,670 Q282,640 275,620 Q270,610 265,595 M280,670 Q285,635 290,615 Q295,600 288,585
-                         M280,670 Q278,645 270,630 M280,670 Q290,650 298,635"
-                      stroke="url(#coralGrad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <!-- Fan coral 1 -->
-                <ellipse cx="320" cy="640" rx="25" ry="35" fill="url(#coralGrad2)" transform="rotate(-5,320,640)"/>
-                <ellipse cx="325" cy="645" rx="18" ry="28" fill="none" stroke="rgba(247,143,179,0.3)" stroke-width="1"/>
-
-                <!-- Branching coral 2 -->
-                <path d="M750,668 Q748,645 740,625 Q735,610 742,595 M750,668 Q755,640 762,620 Q768,608 760,592
-                         M750,668 Q745,650 738,638 M750,668 Q758,648 765,635"
-                      stroke="url(#coralGrad1)" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-                <!-- Brain coral -->
-                <ellipse cx="820" cy="660" rx="30" ry="18" fill="rgba(255,107,107,0.25)"/>
-                <path d="M795,658 Q808,652 820,658 Q832,664 845,658" stroke="rgba(255,107,107,0.3)" stroke-width="1" fill="none"/>
-                <path d="M798,662 Q810,656 822,662 Q834,668 843,662" stroke="rgba(255,107,107,0.25)" stroke-width="1" fill="none"/>
-
-                <!-- Fan coral 2 -->
-                <ellipse cx="1050" cy="638" rx="28" ry="38" fill="url(#coralGrad3)" transform="rotate(8,1050,638)"/>
-
-                <!-- Branching coral 3 -->
-                <path d="M1100,670 Q1098,648 1092,630 Q1088,618 1095,605 M1100,670 Q1105,645 1112,628 Q1118,615 1110,600
-                         M1100,670 Q1095,652 1088,640"
-                      stroke="url(#coralGrad2)" stroke-width="3" fill="none" stroke-linecap="round"/>
-            </g>
-
-            <!-- Seaweed -->
+            <!-- Volumetric light rays from surface -->
             <g>
-                <path d="M180,670 Q175,645 180,625 Q185,608 178,590" stroke="url(#seaweedGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
-                    <animate attributeName="d"
-                        values="M180,670 Q175,645 180,625 Q185,608 178,590;
-                                M180,670 Q185,645 178,625 Q173,608 180,590;
-                                M180,670 Q175,645 180,625 Q185,608 178,590"
-                        dur="4s" repeatCount="indefinite"/>
-                </path>
-                <path d="M480,672 Q476,650 482,632 Q488,618 480,600" stroke="url(#seaweedGrad)" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d"
-                        values="M480,672 Q476,650 482,632 Q488,618 480,600;
-                                M480,672 Q486,650 478,632 Q472,618 482,600;
-                                M480,672 Q476,650 482,632 Q488,618 480,600"
-                        dur="5s" repeatCount="indefinite"/>
-                </path>
-                <path d="M950,670 Q946,648 952,630 Q958,615 950,598" stroke="url(#seaweedGrad)" stroke-width="2" fill="none" stroke-linecap="round">
-                    <animate attributeName="d"
-                        values="M950,670 Q946,648 952,630 Q958,615 950,598;
-                                M950,670 Q956,648 948,630 Q942,615 952,598;
-                                M950,670 Q946,648 952,630 Q958,615 950,598"
-                        dur="4.5s" repeatCount="indefinite"/>
-                </path>
+                <polygon points="380,0 280,700 430,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="530,0 420,700 560,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="680,0 580,700 720,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="830,0 750,700 870,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="980,0 910,700 1020,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="1120,0 1060,700 1160,700" fill="url(#rayGrad)" class="light-ray"/>
             </g>
 
-            <!-- AUV group -->
-            <g class="auv-group">
-                <!-- Light beam cone from AUV down to coral -->
-                <polygon points="680,395 600,660 760,660" fill="url(#lightBeam)" class="auv-light"/>
+            <!-- Rocky ocean floor -->
+            <path d="M0,670 Q40,658 80,665 Q120,670 160,660 Q200,648 240,655 Q270,662 310,650
+                     Q350,640 390,652 Q430,660 470,648 Q510,638 550,645 Q590,655 630,642
+                     Q670,632 710,640 Q750,650 790,638 Q830,628 870,635 Q910,645 950,632
+                     Q990,622 1030,630 Q1070,640 1110,628 Q1150,620 1190,632 Q1230,642 1270,635
+                     Q1310,625 1350,638 Q1390,648 1440,640 L1440,700 L0,700 Z"
+                  fill="#001020"/>
+            <path d="M0,678 Q60,670 120,675 Q180,680 240,668 Q300,658 360,665 Q420,672 480,660
+                     Q540,650 600,658 Q660,666 720,654 Q780,644 840,652 Q900,660 960,648
+                     Q1020,638 1080,646 Q1140,654 1200,644 Q1260,636 1320,648 Q1380,658 1440,650
+                     L1440,700 L0,700 Z"
+                  fill="#000d1a"/>
+            <!-- Floor texture bumps -->
+            <ellipse cx="200" cy="668" rx="35" ry="8" fill="#001525" opacity="0.7"/>
+            <ellipse cx="450" cy="660" rx="40" ry="10" fill="#001525" opacity="0.6"/>
+            <ellipse cx="700" cy="652" rx="30" ry="7" fill="#001525" opacity="0.5"/>
+            <ellipse cx="950" cy="645" rx="45" ry="9" fill="#001525" opacity="0.6"/>
+            <ellipse cx="1200" cy="650" rx="35" ry="8" fill="#001525" opacity="0.5"/>
+            <!-- Small rocks -->
+            <ellipse cx="320" cy="662" rx="12" ry="5" fill="#002040" opacity="0.6"/>
+            <ellipse cx="580" cy="656" rx="15" ry="6" fill="#002040" opacity="0.5"/>
+            <ellipse cx="850" cy="648" rx="10" ry="4" fill="#002040" opacity="0.6"/>
+            <ellipse cx="1100" cy="642" rx="14" ry="5" fill="#002040" opacity="0.5"/>
 
-                <!-- Sonar ping rings -->
-                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="1.5" class="auv-ping" opacity="0"/>
-                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="1" class="auv-ping" opacity="0"/>
-                <circle cx="640" cy="390" r="8" fill="none" stroke="#00b4d8" stroke-width="0.8" class="auv-ping" opacity="0"/>
+            <!-- Submarine group -->
+            <g class="sub-group">
+                <!-- Headlight beam cone -->
+                <polygon points="820,460 950,400 950,520" fill="url(#headlight)" class="sub-light"/>
+                <ellipse cx="900" cy="460" rx="100" ry="50" fill="url(#headlight)" class="sub-light" opacity="0.5"/>
 
-                <!-- AUV body -->
-                <ellipse cx="680" cy="390" rx="50" ry="16" fill="rgba(0,61,107,0.9)" stroke="#00b4d8" stroke-width="1.5"/>
-                <!-- AUV nose -->
-                <path d="M630,390 Q620,390 625,385 Q628,382 630,384 Z" fill="rgba(0,180,216,0.5)"/>
-                <!-- AUV tail/propeller -->
-                <path d="M730,390 L745,378 L745,382 L738,390 L745,398 L745,402 Z" fill="rgba(0,61,107,0.8)" stroke="#00b4d8" stroke-width="1"/>
-                <!-- AUV viewport -->
-                <ellipse cx="660" cy="388" rx="8" ry="5" fill="rgba(0,180,216,0.4)" stroke="#00b4d8" stroke-width="0.8"/>
-                <!-- AUV top fin -->
-                <path d="M690,374 L700,365 L710,374" fill="rgba(0,61,107,0.8)" stroke="#00b4d8" stroke-width="1"/>
-                <!-- AUV sensor light -->
-                <circle cx="635" cy="390" r="2.5" fill="#00b4d8" opacity="0.8">
-                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+                <!-- Submarine body -->
+                <ellipse cx="730" cy="460" rx="100" ry="28" fill="#0e3a5c"/>
+                <!-- Hull highlight -->
+                <ellipse cx="730" cy="450" rx="90" ry="16" fill="#134872" opacity="0.7"/>
+                <!-- Hull bottom shadow -->
+                <ellipse cx="730" cy="470" rx="85" ry="12" fill="#071e30" opacity="0.5"/>
+                <!-- Nose -->
+                <ellipse cx="832" cy="460" rx="14" ry="22" fill="#0e3a5c"/>
+                <!-- Conning tower / sail -->
+                <rect x="698" y="426" width="42" height="22" rx="5" fill="#0e3a5c"/>
+                <rect x="700" y="422" width="38" height="6" rx="3" fill="#1a5070"/>
+                <!-- Periscope -->
+                <line x1="720" y1="422" x2="720" y2="406" stroke="#1a5070" stroke-width="2.5"/>
+                <circle cx="720" cy="404" r="3.5" fill="#1a5070"/>
+                <!-- Tail fin -->
+                <polygon points="630,460 605,425 612,428 632,452" fill="#0e3a5c"/>
+                <polygon points="630,460 605,495 612,492 632,468" fill="#0e3a5c"/>
+                <!-- Rudder -->
+                <polygon points="628,460 618,454 618,466" fill="#0b2e48"/>
+                <!-- Propeller -->
+                <ellipse cx="622" cy="460" rx="3" ry="14" fill="#1a5070" opacity="0.8">
+                    <animateTransform attributeName="transform" type="rotate"
+                        from="0 622 460" to="360 622 460" dur="0.4s" repeatCount="indefinite"/>
+                </ellipse>
+                <!-- Viewport light -->
+                <circle cx="815" cy="458" r="5" fill="#5dc0e8" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite"/>
                 </circle>
+                <!-- Hull detail lines -->
+                <line x1="660" y1="460" x2="800" y2="460" stroke="#1a5070" stroke-width="0.5" opacity="0.4"/>
             </g>
 
-            <!-- Bubbles -->
+            <!-- Sonar rings from right side -->
+            <g opacity="0.25">
+                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1.5" class="sonar-arc" opacity="0"/>
+                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1.2" class="sonar-arc" opacity="0"/>
+                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1" class="sonar-arc" opacity="0"/>
+                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="0.8" class="sonar-arc" opacity="0"/>
+            </g>
+
+            <!-- Floating particles / marine snow -->
             <g>
-                <circle cx="720" cy="380" r="2" fill="rgba(144,224,239,0.3)" class="bubble"/>
-                <circle cx="710" cy="375" r="1.5" fill="rgba(144,224,239,0.25)" class="bubble"/>
-                <circle cx="725" cy="385" r="1" fill="rgba(144,224,239,0.2)" class="bubble"/>
+                <circle cx="200" cy="200" r="1" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="400" cy="350" r="1.5" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="600" cy="150" r="1" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="900" cy="280" r="1.2" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="1100" cy="400" r="1" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="300" cy="500" r="1.3" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="800" cy="100" r="1" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="1300" cy="250" r="1.5" fill="#4da8da" class="particle" opacity="0"/>
             </g>
         </svg>
-    </div>
-
-    <!-- Sonar animation -->
-    <div class="sonar">
-        <div class="sonar-ring"></div>
-        <div class="sonar-ring"></div>
-        <div class="sonar-ring"></div>
-        <div class="sonar-ring"></div>
     </div>
 
     <div class="wrap">
@@ -647,18 +635,19 @@
     <div class="about-grid reveal">
         <div class="about-text">
             <p data-i18n="about_p1">
-                I'm a <strong>PhD Candidate in Computer Science</strong> at Florida International University
-                specializing in AI and Robotics, and a <strong>Modeling and Simulation Systems Engineer at Northrop Grumman</strong>.
+                As a dedicated <strong>Roboticist</strong>, I am actively involved in advancing AI, robotics, and machine learning
+                through innovative research and real-world application. My current work focuses on developing
+                <strong>autonomous underwater, surface, and aerial robotic systems</strong> for infrastructure and environmental monitoring.
             </p>
             <p data-i18n="about_p2">
-                My research focuses on autonomous marine robotics &mdash; designing event-triggered coverage planning
-                algorithms for heterogeneous robot teams (drones, AUVs, ASVs) and developing privacy-preserving
-                multi-agent data collection methods for critical infrastructure monitoring.
+                I have experience in geospatial planning, autonomous navigation, environmental sensing,
+                robotic system integration, hydrodynamic analysis, simulation, and field validation with
+                <strong>ASV and ROV platforms</strong>.
             </p>
             <p data-i18n="about_p3">
-                As a U.S. Navy veteran, I bring discipline and real-world operational perspective to
-                every system I build. I validate my work through CFD analysis and field deployments,
-                and present findings to government and defense stakeholders.
+                Beyond research, I continue to build practical systems through side projects such as
+                CNC machines and 3D printers, using tools like <strong>GRBL, Fusion 360, and additive manufacturing</strong>
+                to fabricate custom parts and prototypes.
             </p>
         </div>
         <div class="profile-card">
@@ -753,8 +742,11 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3>Odin AI</h3>
-                <span class="proj-tag" data-i18n="proj4_tag">Personal Project</span>
+                <img src="odin-avatar.png" alt="Odin AI assistant" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3>Odin AI</h3>
+                    <span class="proj-tag" data-i18n="proj4_tag">Personal Project</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj4_desc">Local-first, multi-agent AI assistant with 13 specialized agents, local LLM orchestration, web dashboard, voice interface, and 800+ test suite. Containerized with Docker.</p>
@@ -767,8 +759,10 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3 data-i18n="proj5_title">BlueROV Platform</h3>
-                <span class="proj-tag" data-i18n="proj5_tag">Ongoing</span>
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj5_title">BlueROV Platform</h3>
+                    <span class="proj-tag" data-i18n="proj5_tag">Ongoing</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj5_desc">Autonomous Underwater Vehicle platform with ROS integration, autonomous navigation, reinforcement learning pipelines, and real-world field deployment support.</p>
@@ -781,8 +775,11 @@
 
         <div class="proj reveal">
             <div class="proj-top">
-                <h3 data-i18n="proj6_title">CAD & Additive Manufacturing</h3>
-                <span class="proj-tag" data-i18n="proj6_tag">Design</span>
+                <img src="flightsim-console.png" alt="Flight simulator console CAD" class="proj-thumb">
+                <div class="proj-top-text">
+                    <h3 data-i18n="proj6_title">CAD & Additive Manufacturing</h3>
+                    <span class="proj-tag" data-i18n="proj6_tag">Design</span>
+                </div>
             </div>
             <div class="proj-body">
                 <p data-i18n="proj6_desc">Flight simulator console, CNC machine cabinet, 3D printer integration, and custom robotics parts fabricated using modern CAD and additive manufacturing tools.</p>
@@ -909,9 +906,9 @@ const translations = {
         hero_btn_contact: "Contáctame",
         sec_about: "Acerca",
         about_name: "Anthony Devesa",
-        about_p1: "Soy <strong>candidato a doctorado en Ciencias de la Computación</strong> en Florida International University, especializado en IA y Robótica, e <strong>Ingeniero de Modelado y Simulación de Sistemas en Northrop Grumman</strong>.",
-        about_p2: "Mi investigación se enfoca en robótica marina autónoma — diseñando algoritmos de planificación de cobertura activados por eventos para equipos heterogéneos de robots (drones, AUVs, ASVs) y desarrollando métodos de recolección de datos multi-agente que preservan la privacidad para el monitoreo de infraestructura crítica.",
-        about_p3: "Como veterano de la Marina de EE.UU., aporto disciplina y perspectiva operacional del mundo real a cada sistema que construyo. Valido mi trabajo a través de análisis CFD y despliegues de campo, y presento hallazgos a partes interesadas del gobierno y la defensa.",
+        about_p1: "Como <strong>Roboticista</strong> dedicado, participo activamente en el avance de la IA, la robótica y el aprendizaje automático a través de investigación innovadora y aplicación en el mundo real. Mi trabajo actual se centra en el desarrollo de <strong>sistemas robóticos autónomos submarinos, de superficie y aéreos</strong> para el monitoreo de infraestructura y medio ambiente.",
+        about_p2: "Tengo experiencia en planificación geoespacial, navegación autónoma, detección ambiental, integración de sistemas robóticos, análisis hidrodinámico, simulación y validación de campo con <strong>plataformas ASV y ROV</strong>.",
+        about_p3: "Más allá de la investigación, continúo construyendo sistemas prácticos a través de proyectos como máquinas CNC e impresoras 3D, utilizando herramientas como <strong>GRBL, Fusion 360 y manufactura aditiva</strong> para fabricar piezas y prototipos personalizados.",
         profile_role: "Candidato a PhD • Roboticista",
         skill_ai: "IA y Aprendizaje Automático",
         skill_robotics: "Robótica y Simulación",
