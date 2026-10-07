@@ -5,456 +5,586 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anthony Devesa - Roboticist & AI Researcher</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
 
-        :root{
-            --navy:#001830;
-            --navy-mid:#002a4e;
-            --navy-light:#003d6b;
-            --ocean:#0077b6;
-            --cyan:#00b4d8;
-            --cyan-glow:#90e0ef;
-            --sand:#caf0f8;
-            --white:#f8fdff;
-            --text:#e0f0ff;
-            --text-dim:#7fb8d4;
-            --success:#34d399;
+        :root {
+            --deep: #060A10;
+            --navy: #0B1120;
+            --navy-mid: #111B2E;
+            --surface: #162035;
+            --surface-hi: #1C2940;
+            --glow: #00D4AA;
+            --glow-bright: #5BFFDA;
+            --glow-ghost: rgba(0,212,170,0.06);
+            --glow-border: rgba(0,212,170,0.12);
+            --warm: #E8A635;
+            --warm-dim: rgba(232,166,53,0.12);
+            --text: #E0E7F0;
+            --text-mid: #8B9BB5;
+            --text-dim: #586882;
+            --line: rgba(0,212,170,0.08);
+            --display: 'Syne', system-ui, sans-serif;
+            --body: 'Outfit', system-ui, -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
         }
 
-        html{scroll-behavior:smooth}
+        html { scroll-behavior: smooth }
 
-        body{
-            font-family:'Inter',system-ui,-apple-system,sans-serif;
-            line-height:1.7;
-            color:var(--text);
-            background:var(--navy);
-            min-height:100vh;
-            overflow-x:hidden;
-        }
-
-        /* NAV */
-        nav{
-            background:rgba(0,24,48,0.85);
-            backdrop-filter:blur(20px);
-            padding:1rem 0;
-            position:sticky;top:0;z-index:1000;
-            border-bottom:1px solid rgba(0,180,216,0.15);
-        }
-        nav .wrap{
-            max-width:1200px;margin:0 auto;padding:0 2rem;
-            display:flex;justify-content:space-between;align-items:center;
-        }
-        .logo{
-            font-size:1.6rem;font-weight:800;letter-spacing:2px;
-            color:var(--cyan);
-            text-transform:uppercase;
-        }
-        .logo span{color:var(--text-dim);font-weight:400;font-size:0.85rem;letter-spacing:1px;margin-left:0.5rem}
-        nav ul{list-style:none;display:flex;gap:2rem;align-items:center}
-        nav a{
-            color:var(--text-dim);text-decoration:none;font-weight:500;font-size:0.95rem;
-            transition:color 0.3s;position:relative;
-        }
-        nav a::after{
-            content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-            background:var(--cyan);transition:width 0.3s;
-        }
-        nav a:hover{color:var(--cyan)}
-        nav a:hover::after{width:100%}
-
-        .lang-toggle{
-            background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);
-            color:var(--cyan);padding:0.35rem 0.8rem;border-radius:20px;
-            font-size:0.8rem;font-weight:600;cursor:pointer;
-            font-family:'JetBrains Mono',monospace;
-            transition:all 0.3s;letter-spacing:1px;
-        }
-        .lang-toggle:hover{background:rgba(0,180,216,0.25);border-color:var(--cyan)}
-
-        /* HERO */
-        .hero{
-            position:relative;
-            padding:8rem 2rem 10rem;
-            text-align:center;
-            overflow:hidden;
-            background:linear-gradient(180deg,#000d1a 0%,#001830 40%,#002040 100%);
+        body {
+            font-family: var(--body);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--navy);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Deep ocean scene */
-        .auv-scene{
-            position:absolute;top:0;left:0;width:100%;height:100%;
-            pointer-events:none;overflow:hidden;
+        /* --- NAV --- */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0.9rem 0;
+            background: rgba(11,17,32,0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid transparent;
+            transition: background 0.4s, border-color 0.4s, padding 0.3s;
         }
-        .auv-scene svg{
-            position:absolute;bottom:0;left:0;
-            width:100%;height:100%;
+        nav.scrolled {
+            background: rgba(11,17,32,0.92);
+            border-bottom-color: var(--line);
+            padding: 0.6rem 0;
+        }
+        nav .wrap {
+            max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-family: var(--display);
+            font-size: 1.3rem; font-weight: 800; letter-spacing: 1.5px;
+            color: var(--glow);
+        }
+        .logo span {
+            color: var(--text-dim); font-family: var(--body);
+            font-weight: 400; font-size: 0.78rem; letter-spacing: 0.5px; margin-left: 0.6rem;
+        }
+        .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center }
+        .nav-links a {
+            color: var(--text-mid); text-decoration: none; font-weight: 500;
+            font-size: 0.9rem; transition: color 0.3s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -6px; left: 0;
+            width: 0; height: 1.5px; background: var(--glow); transition: width 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+        .nav-links a:hover { color: var(--text) }
+        .nav-links a:hover::after { width: 100% }
+
+        .lang-toggle {
+            background: transparent; border: 1px solid var(--glow-border);
+            color: var(--glow); padding: 0.3rem 0.7rem; border-radius: 6px;
+            font-size: 0.72rem; font-weight: 500; cursor: pointer;
+            font-family: var(--mono); transition: all 0.3s; letter-spacing: 0.5px;
+        }
+        .lang-toggle:hover { background: var(--glow-ghost); border-color: var(--glow) }
+
+        .hamburger {
+            display: none; background: none; border: none; cursor: pointer;
+            width: 28px; height: 20px; position: relative; z-index: 110;
+        }
+        .hamburger span {
+            display: block; width: 100%; height: 2px; background: var(--text);
+            position: absolute; left: 0; transition: all 0.3s;
+        }
+        .hamburger span:nth-child(1) { top: 0 }
+        .hamburger span:nth-child(2) { top: 9px }
+        .hamburger span:nth-child(3) { top: 18px }
+        .hamburger.open span:nth-child(1) { top: 9px; transform: rotate(45deg) }
+        .hamburger.open span:nth-child(2) { opacity: 0 }
+        .hamburger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg) }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background: url('hero-rov.jpg') center 40% / cover no-repeat;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(180deg,
+                rgba(3,6,12,0.72) 0%,
+                rgba(6,10,16,0.48) 30%,
+                rgba(6,10,16,0.55) 60%,
+                rgba(11,17,32,0.92) 100%);
         }
 
-        .sub-group{
-            animation:subDrift 25s ease-in-out infinite;
-        }
-        @keyframes subDrift{
-            0%{transform:translate(0,0)}
-            25%{transform:translate(30px,-8px)}
-            50%{transform:translate(60px,4px)}
-            75%{transform:translate(20px,-6px)}
-            100%{transform:translate(0,0)}
+        .hero-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 2;
         }
 
-        .sub-light{
-            animation:beamPulse 5s ease-in-out infinite alternate;
-        }
-        @keyframes beamPulse{
-            0%{opacity:0.08}
-            50%{opacity:0.15}
-            100%{opacity:0.06}
+        .hero-ocean {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; overflow: hidden; z-index: 2;
         }
 
-        .sonar-arc{
-            animation:sonarArc 4s ease-out infinite;
-            transform-origin:center;
-            transform-box:fill-box;
+        .caustics {
+            position: absolute; top: 0; left: 0; width: 100%; height: 50%; z-index: 2;
+            background:
+                radial-gradient(ellipse 800px 250px at 35% 10%, rgba(20,100,140,0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 65% 20%, rgba(10,80,120,0.04) 0%, transparent 60%);
+            animation: causticShift 16s ease-in-out infinite alternate;
         }
-        .sonar-arc:nth-child(2){animation-delay:1s}
-        .sonar-arc:nth-child(3){animation-delay:2s}
-        .sonar-arc:nth-child(4){animation-delay:3s}
-
-        @keyframes sonarArc{
-            0%{opacity:0.6;transform:scale(1)}
-            100%{opacity:0;transform:scale(8)}
-        }
-
-        .light-ray{
-            animation:rayShimmer 8s ease-in-out infinite alternate;
-        }
-        .light-ray:nth-child(2){animation-delay:1.5s;animation-duration:10s}
-        .light-ray:nth-child(3){animation-delay:3s;animation-duration:7s}
-        .light-ray:nth-child(4){animation-delay:0.5s;animation-duration:9s}
-        .light-ray:nth-child(5){animation-delay:2s;animation-duration:11s}
-        .light-ray:nth-child(6){animation-delay:4s;animation-duration:9.5s}
-
-        @keyframes rayShimmer{
-            0%{opacity:0.03}
-            50%{opacity:0.08}
-            100%{opacity:0.02}
+        @keyframes causticShift {
+            0% { opacity: 0.5; transform: translateX(0) }
+            50% { opacity: 0.9; transform: translateX(-20px) }
+            100% { opacity: 0.4; transform: translateX(15px) }
         }
 
-        .particle{
-            animation:particleDrift 12s linear infinite;
-        }
-        .particle:nth-child(2){animation-delay:3s;animation-duration:15s}
-        .particle:nth-child(3){animation-delay:6s;animation-duration:10s}
-        .particle:nth-child(4){animation-delay:9s;animation-duration:14s}
-        .particle:nth-child(5){animation-delay:1s;animation-duration:11s}
-        .particle:nth-child(6){animation-delay:4s;animation-duration:13s}
-        .particle:nth-child(7){animation-delay:7s;animation-duration:9s}
-        .particle:nth-child(8){animation-delay:2s;animation-duration:16s}
+        .hero-ocean svg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100% }
 
-        @keyframes particleDrift{
-            0%{transform:translate(0,0);opacity:0}
-            20%{opacity:0.4}
-            80%{opacity:0.3}
-            100%{transform:translate(-60px,-40px);opacity:0}
+
+        .sonar-ring {
+            animation: sonarExpand 5s ease-out infinite;
+            transform-origin: center; transform-box: fill-box;
+        }
+        .sonar-ring:nth-child(2) { animation-delay: 1.25s }
+        .sonar-ring:nth-child(3) { animation-delay: 2.5s }
+        .sonar-ring:nth-child(4) { animation-delay: 3.75s }
+        @keyframes sonarExpand {
+            0% { opacity: 0.4; transform: scale(1) }
+            100% { opacity: 0; transform: scale(12) }
         }
 
-        /* Wave divider */
-        .wave-divider{
-            position:absolute;bottom:-2px;left:0;width:100%;
-            line-height:0;
-        }
-        .wave-divider svg{
-            width:100%;height:80px;
-        }
-
-        .hero .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto}
-
-        .hero-badge{
-            display:inline-flex;align-items:center;gap:0.5rem;
-            background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.25);
-            padding:0.5rem 1.2rem;border-radius:40px;
-            font-size:0.85rem;color:var(--cyan);font-weight:600;
-            margin-bottom:2rem;letter-spacing:1px;text-transform:uppercase;
-            animation:fadeIn 0.8s ease;
+        .light-ray { animation: rayPulse 12s ease-in-out infinite alternate }
+        .light-ray:nth-child(2) { animation-delay: 2s; animation-duration: 14s }
+        .light-ray:nth-child(3) { animation-delay: 4s; animation-duration: 10s }
+        .light-ray:nth-child(4) { animation-delay: 1s; animation-duration: 13s }
+        .light-ray:nth-child(5) { animation-delay: 3s; animation-duration: 15s }
+        .light-ray:nth-child(6) { animation-delay: 5s; animation-duration: 12s }
+        @keyframes rayPulse {
+            0% { opacity: 0.015 } 50% { opacity: 0.05 } 100% { opacity: 0.01 }
         }
 
-        .hero h1{
-            font-size:3.8rem;font-weight:900;letter-spacing:-2px;
-            line-height:1.1;margin-bottom:1.5rem;
-            background:linear-gradient(135deg,#ffffff 0%,var(--cyan-glow) 100%);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1);
+        .marine-snow { animation: snowDrift 18s linear infinite }
+        .marine-snow:nth-child(2) { animation-delay: 4s; animation-duration: 22s }
+        .marine-snow:nth-child(3) { animation-delay: 8s; animation-duration: 16s }
+        .marine-snow:nth-child(4) { animation-delay: 12s; animation-duration: 20s }
+        .marine-snow:nth-child(5) { animation-delay: 2s; animation-duration: 17s }
+        .marine-snow:nth-child(6) { animation-delay: 6s; animation-duration: 19s }
+        .marine-snow:nth-child(7) { animation-delay: 10s; animation-duration: 15s }
+        .marine-snow:nth-child(8) { animation-delay: 3s; animation-duration: 21s }
+        @keyframes snowDrift {
+            0% { transform: translate(0, 0); opacity: 0 }
+            15% { opacity: 0.3 }
+            85% { opacity: 0.2 }
+            100% { transform: translate(-40px, -30px); opacity: 0 }
         }
 
-        .hero p{
-            font-size:1.2rem;color:var(--text-dim);
-            max-width:650px;margin:0 auto 2.5rem;font-weight:300;
-            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.15s backwards;
+        /* HUD overlay */
+        .hud-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px; letter-spacing: 1px;
+        }
+        .hud-scan { animation: hudScan 6s linear infinite }
+        @keyframes hudScan {
+            0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) }
+        }
+        .hud-blink { animation: hudBlink 2s ease-in-out infinite }
+        @keyframes hudBlink {
+            0%,100% { opacity: 0.6 } 50% { opacity: 0.2 }
         }
 
-        .hero-btns{
-            display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
-            animation:slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s backwards;
+        /* Wave transition */
+        .wave-divider {
+            position: absolute; bottom: -2px; left: 0; width: 100%; line-height: 0; z-index: 3;
+        }
+        .wave-divider svg { width: 100%; height: 90px }
+
+        /* Hero content */
+        .hero .wrap {
+            position: relative; z-index: 3; max-width: 800px; margin: 0 auto;
+            text-align: center; padding: 0 2rem;
         }
 
-        .btn{
-            padding:0.9rem 2rem;border-radius:8px;text-decoration:none;
-            font-weight:600;font-size:0.95rem;
-            display:inline-flex;align-items:center;gap:0.5rem;
-            transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
-            border:none;cursor:pointer;
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.45rem 1.1rem; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 500; letter-spacing: 0.5px;
+            color: var(--glow); border: 1px solid var(--glow-border);
+            background: var(--glow-ghost);
+            animation: heroFade 1s cubic-bezier(0.16,1,0.3,1) 0.2s backwards;
         }
-        .btn-fill{
-            background:linear-gradient(135deg,var(--ocean),var(--cyan));color:#fff;
-            box-shadow:0 4px 20px rgba(0,119,182,0.4);
+        .hero-badge i { font-size: 0.75rem }
+
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800;
+            line-height: 1.05; letter-spacing: -1.5px;
+            margin: 1.8rem 0 1.2rem;
+            color: #fff;
+            animation: heroSlide 0.9s cubic-bezier(0.16,1,0.3,1) 0.35s backwards;
         }
-        .btn-fill:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,119,182,0.5)}
-        .btn-outline{
-            background:transparent;color:var(--cyan);
-            border:2px solid rgba(0,180,216,0.4);
-        }
-        .btn-outline:hover{
-            background:rgba(0,180,216,0.1);border-color:var(--cyan);
-            transform:translateY(-3px);
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--glow-bright), var(--glow));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* SECTION COMMON */
-        .sec{
-            max-width:1200px;margin:0 auto;
-            padding:5rem 2rem;
-        }
-        .sec-title{
-            font-size:0.85rem;font-weight:700;text-transform:uppercase;
-            letter-spacing:3px;color:var(--cyan);margin-bottom:0.5rem;
-        }
-        .sec h2{
-            font-size:2.6rem;font-weight:800;color:var(--white);
-            margin-bottom:3rem;letter-spacing:-1px;
-        }
-        .divider{
-            width:60px;height:3px;margin:1rem 0 2.5rem;
-            background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px;
+        .hero p {
+            font-size: 1.1rem; color: var(--text-mid); font-weight: 300;
+            max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.8;
+            animation: heroSlide 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s backwards;
         }
 
-        /* ABOUT */
-        .about-grid{
-            display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center;
-        }
-        .about-text{color:var(--text-dim);font-size:1.05rem}
-        .about-text p{margin-bottom:1.5rem}
-        .about-text strong{color:var(--cyan)}
-
-        .profile-card{
-            text-align:center;
-        }
-        .profile-img{
-            width:240px;height:240px;border-radius:50%;object-fit:cover;
-            border:4px solid var(--navy-light);
-            box-shadow:0 0 40px rgba(0,180,216,0.2), 0 0 80px rgba(0,119,182,0.1);
-            animation:profileGlow 4s ease-in-out infinite alternate;
-        }
-        @keyframes profileGlow{
-            0%{box-shadow:0 0 40px rgba(0,180,216,0.15),0 0 80px rgba(0,119,182,0.05)}
-            100%{box-shadow:0 0 60px rgba(0,180,216,0.3),0 0 100px rgba(0,119,182,0.15)}
-        }
-        .profile-name{
-            margin-top:1.5rem;font-size:1.3rem;font-weight:700;color:var(--white);
-        }
-        .profile-role{color:var(--cyan);font-size:0.9rem;font-weight:500;margin-top:0.3rem}
-
-        /* SKILLS */
-        .skills-row{
-            display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
-            margin-top:3rem;
-        }
-        .skill-card{
-            background:linear-gradient(135deg,rgba(0,42,78,0.6),rgba(0,61,107,0.3));
-            border:1px solid rgba(0,180,216,0.12);
-            padding:1.8rem;border-radius:12px;
-            transition:all 0.3s;
-        }
-        .skill-card:hover{
-            transform:translateY(-6px);
-            border-color:var(--cyan);
-            box-shadow:0 10px 40px rgba(0,180,216,0.1);
-        }
-        .skill-icon{font-size:1.8rem;margin-bottom:1rem}
-        .skill-card h4{color:var(--white);font-size:1rem;margin-bottom:0.6rem;font-weight:700}
-        .skill-card p{color:var(--text-dim);font-size:0.85rem;line-height:1.6}
-
-        /* PROJECTS */
-        .proj-grid{
-            display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:2rem;
-        }
-        .proj{
-            background:linear-gradient(180deg,rgba(0,42,78,0.5),rgba(0,24,48,0.8));
-            border:1px solid rgba(0,180,216,0.1);
-            border-radius:12px;overflow:hidden;
-            transition:all 0.35s cubic-bezier(0.16,1,0.3,1);
-            display:flex;flex-direction:column;
-        }
-        .proj:hover{
-            transform:translateY(-10px);
-            border-color:rgba(0,180,216,0.3);
-            box-shadow:0 20px 60px rgba(0,119,182,0.15);
-        }
-        .proj-top{
-            padding:2rem;
-            background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
-            position:relative;overflow:hidden;
-            display:flex;align-items:center;gap:1.5rem;
-        }
-        .proj-top::before{
-            content:'';position:absolute;top:-30px;right:-30px;
-            width:120px;height:120px;
-            border:2px solid rgba(0,180,216,0.1);border-radius:50%;
-        }
-        .proj-thumb{
-            width:90px;height:90px;border-radius:50%;object-fit:cover;flex-shrink:0;
-            border:3px solid rgba(0,180,216,0.3);
-            box-shadow:0 0 20px rgba(0,180,216,0.15);
-            position:relative;z-index:1;
-            transition:all 0.3s;
-        }
-        .proj:hover .proj-thumb{
-            border-color:var(--cyan);
-            box-shadow:0 0 30px rgba(0,180,216,0.3);
-        }
-        .proj-top-text{position:relative;z-index:1}
-        .proj-top h3{font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
-        .proj-tag{
-            display:inline-block;
-            background:rgba(0,180,216,0.15);border:1px solid rgba(0,180,216,0.3);
-            padding:0.3rem 0.8rem;border-radius:20px;
-            font-size:0.8rem;color:var(--cyan);font-weight:600;
-            position:relative;z-index:1;
-        }
-        .proj-body{padding:2rem;flex-grow:1;display:flex;flex-direction:column}
-        .proj-body p{color:var(--text-dim);margin-bottom:1.5rem;flex-grow:1;font-size:0.95rem}
-        .proj-techs{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.5rem}
-        .tech{
-            background:rgba(0,180,216,0.1);border:1px solid rgba(0,180,216,0.2);
-            color:var(--cyan);padding:0.3rem 0.7rem;border-radius:4px;
-            font-size:0.8rem;font-weight:600;font-family:'JetBrains Mono',monospace;
-        }
-        .proj-link{
-            display:inline-flex;align-items:center;gap:0.5rem;
-            color:var(--cyan);text-decoration:none;font-weight:600;font-size:0.9rem;
-            transition:all 0.3s;
-        }
-        .proj-link:hover{color:var(--cyan-glow);transform:translateX(4px)}
-        .proj-status{
-            margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,180,216,0.1);
-            color:var(--success);font-weight:600;font-size:0.85rem;
+        .hero-btns {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            animation: heroSlide 0.9s cubic-bezier(0.16,1,0.3,1) 0.65s backwards;
         }
 
-        /* PUBLICATIONS */
-        .pub{
-            background:linear-gradient(135deg,rgba(0,42,78,0.4),rgba(0,24,48,0.6));
-            border:1px solid rgba(52,211,153,0.15);
-            border-left:4px solid var(--success);
-            padding:2rem;margin-bottom:1.5rem;border-radius:8px;
-            transition:all 0.3s;
-        }
-        .pub:hover{
-            transform:translateX(6px);
-            border-left-color:var(--cyan);
-            box-shadow:0 10px 40px rgba(0,119,182,0.1);
-        }
-        .pub h4{color:var(--white);font-size:1.05rem;margin-bottom:0.6rem;font-weight:700}
-        .pub .authors{color:var(--text-dim);font-style:italic;font-size:0.9rem;margin-bottom:0.5rem}
-        .pub .venue{color:var(--text-dim);font-size:0.9rem}
-        .pub .venue strong{color:var(--cyan)}
-        .pub .doi{color:var(--ocean);font-size:0.85rem;margin-top:0.5rem;font-family:'JetBrains Mono',monospace}
+        @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes heroSlide { from { opacity: 0; transform: translateY(30px) } to { opacity: 1; transform: none } }
 
-        /* EXPERIENCE */
-        .timeline{position:relative;padding-left:3rem}
-        .timeline::before{
-            content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
-            background:linear-gradient(180deg,var(--cyan),var(--ocean),transparent);
+        .btn {
+            padding: 0.85rem 1.8rem; border-radius: 10px; text-decoration: none;
+            font-weight: 600; font-size: 0.9rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.35s cubic-bezier(0.33,1,0.68,1);
+            border: none; cursor: pointer; font-family: var(--body);
         }
-        .tl-item{margin-bottom:3rem;position:relative}
-        .tl-item::before{
-            content:'';position:absolute;left:-3rem;top:4px;
-            width:14px;height:14px;border-radius:50%;
-            background:var(--navy);border:3px solid var(--cyan);
-            box-shadow:0 0 12px rgba(0,180,216,0.3);
-            margin-left:-6px;
+        .btn-fill {
+            background: var(--glow); color: var(--navy);
+            box-shadow: 0 4px 25px rgba(0,212,170,0.25), 0 0 60px rgba(0,212,170,0.08);
         }
-        .tl-item h4{color:var(--white);font-size:1.15rem;font-weight:700;margin-bottom:0.3rem}
-        .tl-date{color:var(--cyan);font-weight:600;font-size:0.9rem;margin-bottom:0.4rem}
-        .tl-item p{color:var(--text-dim);font-size:0.95rem}
-        .tl-item p strong{color:var(--white)}
-
-        /* CONTACT */
-        .contact-grid{
-            display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;
+        .btn-fill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(0,212,170,0.35), 0 0 80px rgba(0,212,170,0.12);
         }
-        .contact-card{
-            background:linear-gradient(135deg,rgba(0,42,78,0.5),rgba(0,24,48,0.7));
-            border:1px solid rgba(0,180,216,0.1);
-            padding:2.5rem 1.5rem;border-radius:12px;text-align:center;
-            transition:all 0.3s;
+        .btn-ghost {
+            background: transparent; color: var(--text);
+            border: 1.5px solid rgba(255,255,255,0.15);
         }
-        .contact-card:hover{
-            transform:translateY(-8px);
-            border-color:var(--cyan);
-            box-shadow:0 15px 50px rgba(0,180,216,0.12);
-        }
-        .contact-card i{font-size:2rem;color:var(--cyan);margin-bottom:1rem}
-        .contact-card h4{color:var(--white);font-size:1rem;margin-bottom:0.8rem;font-weight:700}
-        .contact-card a{color:var(--cyan);text-decoration:none;font-weight:500;font-size:0.9rem;transition:color 0.3s}
-        .contact-card a:hover{color:var(--cyan-glow)}
-
-        /* FOOTER */
-        footer{
-            border-top:1px solid rgba(0,180,216,0.1);
-            text-align:center;padding:3rem 2rem;
-            color:var(--text-dim);font-size:0.9rem;
-        }
-        footer .brand{color:var(--cyan);font-weight:700;font-size:1rem;margin-bottom:0.5rem}
-
-        /* ANIMATIONS */
-        @keyframes slideUp{
-            from{opacity:0;transform:translateY(40px)}
-            to{opacity:1;transform:translateY(0)}
-        }
-        @keyframes fadeIn{
-            from{opacity:0}to{opacity:1}
+        .btn-ghost:hover {
+            border-color: rgba(255,255,255,0.35); transform: translateY(-2px);
+            background: rgba(255,255,255,0.04);
         }
 
-        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
-        .reveal.visible{opacity:1;transform:translateY(0)}
-
-        /* RESPONSIVE */
-        @media(max-width:768px){
-            nav ul{gap:1rem;font-size:0.85rem}
-            .hero{padding:5rem 1.5rem 7rem}
-            .hero h1{font-size:2.4rem}
-            .hero p{font-size:1rem}
-            .about-grid{grid-template-columns:1fr;gap:2rem}
-            .profile-card{order:-1}
-            .skills-row{grid-template-columns:1fr 1fr}
-            .proj-grid{grid-template-columns:1fr}
-            .sec h2{font-size:2rem}
-            .sec{padding:3rem 1.5rem}
-            .btn{width:100%;justify-content:center}
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
+            z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+            color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px; font-weight: 500;
+            animation: hintPulse 2.5s ease-in-out infinite;
+        }
+        .scroll-hint .arrow {
+            width: 20px; height: 20px; border-right: 1.5px solid var(--text-dim);
+            border-bottom: 1.5px solid var(--text-dim); transform: rotate(45deg);
+        }
+        @keyframes hintPulse {
+            0%,100% { opacity: 0.4; transform: translateX(-50%) translateY(0) }
+            50% { opacity: 0.8; transform: translateX(-50%) translateY(6px) }
         }
 
-        @media(max-width:480px){
-            .skills-row{grid-template-columns:1fr}
-            .logo span{display:none}
+        /* --- SECTIONS --- */
+        .sec {
+            max-width: 1100px; margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+        .sec-label {
+            font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+            color: var(--glow); margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        .sec h2 {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700; color: #fff; margin-bottom: 1rem;
+            letter-spacing: -0.5px; line-height: 1.15;
+        }
+        .sec-line {
+            width: 50px; height: 2px; background: var(--glow);
+            border-radius: 1px; margin-bottom: 3rem; opacity: 0.6;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.vis { opacity: 1; transform: none }
+        .reveal-group .reveal:nth-child(1) { transition-delay: 0s }
+        .reveal-group .reveal:nth-child(2) { transition-delay: 0.08s }
+        .reveal-group .reveal:nth-child(3) { transition-delay: 0.16s }
+        .reveal-group .reveal:nth-child(4) { transition-delay: 0.24s }
+        .reveal-group .reveal:nth-child(5) { transition-delay: 0.32s }
+        .reveal-group .reveal:nth-child(6) { transition-delay: 0.40s }
+
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 280px;
+            gap: 4rem; align-items: center;
+        }
+        .about-text { color: var(--text-mid); font-size: 1rem }
+        .about-text p { margin-bottom: 1.3rem }
+        .about-text strong { color: var(--glow); font-weight: 600 }
+
+        .profile-card { text-align: center }
+        .profile-ring {
+            width: 220px; height: 220px; border-radius: 50%;
+            margin: 0 auto;
+            padding: 4px;
+            background: conic-gradient(from 0deg, var(--glow), transparent 40%, var(--glow) 70%, transparent);
+            animation: ringRotate 8s linear infinite;
+            position: relative;
+        }
+        @keyframes ringRotate { to { background: conic-gradient(from 360deg, var(--glow), transparent 40%, var(--glow) 70%, transparent) } }
+        .profile-img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--navy);
+            display: block;
+        }
+        .profile-name {
+            margin-top: 1.2rem; font-family: var(--display);
+            font-size: 1.15rem; font-weight: 700; color: #fff;
+        }
+        .profile-role { color: var(--glow); font-size: 0.85rem; font-weight: 500; margin-top: 0.2rem }
+
+        /* Skills */
+        .skills-row {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem; margin-top: 3.5rem;
+        }
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--glow-border);
+            padding: 1.6rem 1.3rem; border-radius: 12px;
+            transition: border-color 0.35s, box-shadow 0.35s;
+            position: relative; overflow: hidden;
+        }
+        .skill-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--glow), transparent);
+            opacity: 0; transition: opacity 0.35s;
+        }
+        .skill-card:hover::before { opacity: 1 }
+        .skill-card:hover {
+            border-color: rgba(0,212,170,0.25);
+            box-shadow: 0 8px 40px rgba(0,212,170,0.06);
+        }
+        .skill-icon { font-size: 1.6rem; margin-bottom: 0.8rem }
+        .skill-card h4 { color: #fff; font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600 }
+        .skill-card p { color: var(--text-dim); font-size: 0.8rem; line-height: 1.6 }
+
+        /* --- PROJECTS --- */
+        .proj-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+        }
+        .proj {
+            background: var(--surface);
+            border: 1px solid var(--glow-border);
+            border-radius: 14px; overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+            transform-style: preserve-3d;
+        }
+        .proj:hover {
+            border-color: rgba(0,212,170,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(0,212,170,0.05);
+            transform: translateY(-4px);
+        }
+        .proj-top {
+            padding: 1.6rem 1.6rem 1.2rem;
+            display: flex; align-items: center; gap: 1.2rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .proj-thumb {
+            width: 70px; height: 70px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+            border: 2px solid var(--glow-border);
+            transition: border-color 0.3s;
+        }
+        .proj:hover .proj-thumb { border-color: var(--glow) }
+        .proj-top-text { min-width: 0 }
+        .proj-top h3 {
+            font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+            color: #fff; margin-bottom: 0.4rem; line-height: 1.3;
+        }
+        .proj-tag {
+            display: inline-block; font-family: var(--mono);
+            font-size: 0.68rem; font-weight: 500;
+            padding: 0.2rem 0.6rem; border-radius: 5px;
+            background: var(--glow-ghost); color: var(--glow);
+            border: 1px solid var(--glow-border);
+        }
+        .proj-body { padding: 1.4rem 1.6rem 1.6rem; flex-grow: 1; display: flex; flex-direction: column }
+        .proj-body p {
+            color: var(--text-mid); font-size: 0.88rem;
+            margin-bottom: 1.2rem; flex-grow: 1; line-height: 1.65;
+        }
+        .proj-techs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.2rem }
+        .tech {
+            font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+            color: var(--text-dim); padding: 0.2rem 0.55rem; border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+        }
+        .proj-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--glow); text-decoration: none; font-weight: 500;
+            font-size: 0.85rem; transition: gap 0.3s;
+        }
+        .proj-link:hover { gap: 0.7rem }
+        .proj-link i { font-size: 0.75rem }
+        .proj-status {
+            margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--line);
+            font-weight: 600; font-size: 0.8rem;
+        }
+        .proj-status.accepted { color: var(--warm) }
+        .proj-status.published { color: var(--glow) }
+
+        /* --- PUBLICATIONS --- */
+        .pub {
+            padding: 1.8rem; margin-bottom: 1rem; border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--glow-border);
+            border-left: 3px solid var(--glow);
+            transition: border-left-color 0.3s, box-shadow 0.3s;
+        }
+        .pub:hover {
+            border-left-color: var(--glow-bright);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .pub h4 { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600; line-height: 1.4 }
+        .pub .authors { color: var(--text-dim); font-style: italic; font-size: 0.85rem; margin-bottom: 0.4rem }
+        .pub .venue { color: var(--text-mid); font-size: 0.85rem }
+        .pub .venue strong { color: var(--glow); font-weight: 600 }
+        .pub .doi {
+            font-family: var(--mono); color: var(--text-dim);
+            font-size: 0.78rem; margin-top: 0.4rem;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; padding-left: 2.5rem }
+        .timeline::before {
+            content: ''; position: absolute; left: 5px; top: 8px; bottom: 0;
+            width: 1px; background: linear-gradient(180deg, var(--glow), var(--glow-border) 70%, transparent);
+        }
+        .tl-item { margin-bottom: 2.5rem; position: relative }
+        .tl-item::before {
+            content: ''; position: absolute; left: -2.5rem; top: 8px;
+            width: 11px; height: 11px; border-radius: 50%;
+            background: var(--navy); border: 2px solid var(--glow);
+            box-shadow: 0 0 10px rgba(0,212,170,0.2);
+        }
+        .tl-item h4 { color: #fff; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem }
+        .tl-date {
+            font-family: var(--mono); font-size: 0.78rem;
+            color: var(--glow); font-weight: 500; margin-bottom: 0.3rem;
+        }
+        .tl-item p { color: var(--text-mid); font-size: 0.9rem }
+        .tl-item p strong { color: #fff; font-weight: 600 }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
+        }
+        .contact-card {
+            background: var(--surface); border: 1px solid var(--glow-border);
+            padding: 2rem 1.2rem; border-radius: 12px; text-align: center;
+            transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0,212,170,0.25);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        .contact-card i { font-size: 1.6rem; color: var(--glow); margin-bottom: 0.8rem }
+        .contact-card h4 { color: #fff; font-size: 0.88rem; margin-bottom: 0.6rem; font-weight: 600 }
+        .contact-card a {
+            color: var(--text-mid); text-decoration: none; font-size: 0.82rem;
+            font-weight: 400; transition: color 0.3s; word-break: break-all;
+        }
+        .contact-card:hover a { color: var(--glow) }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--line); text-align: center;
+            padding: 2.5rem 2rem; color: var(--text-dim); font-size: 0.82rem;
+        }
+        footer .brand {
+            font-family: var(--display); color: var(--glow);
+            font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; letter-spacing: 1px;
+        }
+
+        /* Section dividers */
+        .sec + .sec { border-top: 1px solid var(--line) }
+
+        /* --- PROGRESS BAR --- */
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 2px; z-index: 200;
+            background: linear-gradient(90deg, var(--glow), var(--glow-bright));
+            width: 0; transition: width 0.15s;
+            box-shadow: 0 0 8px rgba(0,212,170,0.4);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .proj-grid { grid-template-columns: 1fr }
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem }
+            .profile-card { order: -1 }
+            .skills-row { grid-template-columns: 1fr 1fr }
+            .contact-grid { grid-template-columns: 1fr 1fr }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+                background: rgba(11,17,32,0.97); backdrop-filter: blur(30px);
+                flex-direction: column; justify-content: center;
+                padding: 2rem; gap: 1.5rem;
+                transition: right 0.4s cubic-bezier(0.33,1,0.68,1);
+                border-left: 1px solid var(--line);
+            }
+            .nav-links.open { right: 0 }
+            .nav-links a { font-size: 1.1rem }
+            .hamburger { display: block }
+            .hero h1 { letter-spacing: -1px }
+            .hero p { font-size: 1rem }
+            .sec { padding: 4rem 1.5rem }
+            .sec h2 { font-size: 1.7rem }
+            .skills-row { grid-template-columns: 1fr }
+            .contact-grid { grid-template-columns: 1fr }
+            .scroll-hint { display: none }
+            .btn { width: 100%; justify-content: center }
+            .logo span { display: none }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none }
         }
     </style>
 </head>
 <body>
 
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
     <div class="wrap">
         <div class="logo">AD <span>// Maritime Robotics</span></div>
-        <ul>
+        <button class="hamburger" id="menuBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#about" data-i18n="nav_about">About</a></li>
             <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
             <li><a href="#research" data-i18n="nav_research">Research</a></li>
@@ -466,164 +596,160 @@
 
 <!-- HERO -->
 <section class="hero">
-    <!-- Deep ocean scene -->
-    <div class="auv-scene">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+    <div class="hero-ocean">
         <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <radialGradient id="headlight" cx="0%" cy="50%" r="70%" fx="0%" fy="50%">
-                    <stop offset="0%" stop-color="#c0e8ff" stop-opacity="0.4"/>
-                    <stop offset="30%" stop-color="#4da8da" stop-opacity="0.15"/>
-                    <stop offset="100%" stop-color="#003d6b" stop-opacity="0"/>
+                <radialGradient id="headlight" cx="0%" cy="50%" r="80%" fx="0%" fy="50%">
+                    <stop offset="0%" stop-color="#a0d8f0" stop-opacity="0.28"/>
+                    <stop offset="20%" stop-color="#5098c0" stop-opacity="0.1"/>
+                    <stop offset="50%" stop-color="#205878" stop-opacity="0.03"/>
+                    <stop offset="100%" stop-color="#081520" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="rayGrad" x1="0.5" y1="0" x2="0.5" y2="1">
-                    <stop offset="0%" stop-color="#2080b0" stop-opacity="0.2"/>
-                    <stop offset="60%" stop-color="#105080" stop-opacity="0.06"/>
-                    <stop offset="100%" stop-color="#001830" stop-opacity="0"/>
+                    <stop offset="0%" stop-color="#103050" stop-opacity="0.08"/>
+                    <stop offset="50%" stop-color="#082030" stop-opacity="0.025"/>
+                    <stop offset="100%" stop-color="#061018" stop-opacity="0"/>
                 </linearGradient>
-                <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#001830" stop-opacity="0"/>
-                    <stop offset="60%" stop-color="#001020" stop-opacity="0.6"/>
-                    <stop offset="100%" stop-color="#000a15" stop-opacity="0.9"/>
+                <linearGradient id="hullGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#18536E"/>
+                    <stop offset="35%" stop-color="#0E3A52"/>
+                    <stop offset="65%" stop-color="#0A2D42"/>
+                    <stop offset="100%" stop-color="#061E30"/>
                 </linearGradient>
-                <radialGradient id="depthGlow" cx="40%" cy="20%" r="70%">
-                    <stop offset="0%" stop-color="#0a3d62" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#001830" stop-opacity="0"/>
+                <linearGradient id="sailGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#1A5A78"/>
+                    <stop offset="100%" stop-color="#0C3350"/>
+                </linearGradient>
+                <radialGradient id="depthGlow" cx="45%" cy="25%" r="65%">
+                    <stop offset="0%" stop-color="#0A2840" stop-opacity="0.18"/>
+                    <stop offset="100%" stop-color="#061018" stop-opacity="0"/>
                 </radialGradient>
+                <radialGradient id="subAmbient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#1a6080" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#061018" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#061018" stop-opacity="0"/>
+                    <stop offset="50%" stop-color="#040B12" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#020508" stop-opacity="0.9"/>
+                </linearGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
             </defs>
 
-            <!-- Depth atmosphere -->
-            <rect width="1440" height="700" fill="url(#depthGlow)"/>
-
-            <!-- Volumetric light rays from surface -->
+            <!-- Subtle volumetric light rays from surface -->
             <g>
-                <polygon points="380,0 280,700 430,700" fill="url(#rayGrad)" class="light-ray"/>
-                <polygon points="530,0 420,700 560,700" fill="url(#rayGrad)" class="light-ray"/>
-                <polygon points="680,0 580,700 720,700" fill="url(#rayGrad)" class="light-ray"/>
-                <polygon points="830,0 750,700 870,700" fill="url(#rayGrad)" class="light-ray"/>
-                <polygon points="980,0 910,700 1020,700" fill="url(#rayGrad)" class="light-ray"/>
-                <polygon points="1120,0 1060,700 1160,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="300,0 220,700 360,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="500,0 400,700 530,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="700,0 610,700 720,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="880,0 800,700 890,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="1060,0 990,700 1070,700" fill="url(#rayGrad)" class="light-ray"/>
+                <polygon points="1220,0 1150,700 1230,700" fill="url(#rayGrad)" class="light-ray"/>
             </g>
 
-            <!-- Rocky ocean floor -->
-            <path d="M0,670 Q40,658 80,665 Q120,670 160,660 Q200,648 240,655 Q270,662 310,650
-                     Q350,640 390,652 Q430,660 470,648 Q510,638 550,645 Q590,655 630,642
-                     Q670,632 710,640 Q750,650 790,638 Q830,628 870,635 Q910,645 950,632
-                     Q990,622 1030,630 Q1070,640 1110,628 Q1150,620 1190,632 Q1230,642 1270,635
-                     Q1310,625 1350,638 Q1390,648 1440,640 L1440,700 L0,700 Z"
-                  fill="#001020"/>
-            <path d="M0,678 Q60,670 120,675 Q180,680 240,668 Q300,658 360,665 Q420,672 480,660
-                     Q540,650 600,658 Q660,666 720,654 Q780,644 840,652 Q900,660 960,648
-                     Q1020,638 1080,646 Q1140,654 1200,644 Q1260,636 1320,648 Q1380,658 1440,650
-                     L1440,700 L0,700 Z"
-                  fill="#000d1a"/>
-            <!-- Floor texture bumps -->
-            <ellipse cx="200" cy="668" rx="35" ry="8" fill="#001525" opacity="0.7"/>
-            <ellipse cx="450" cy="660" rx="40" ry="10" fill="#001525" opacity="0.6"/>
-            <ellipse cx="700" cy="652" rx="30" ry="7" fill="#001525" opacity="0.5"/>
-            <ellipse cx="950" cy="645" rx="45" ry="9" fill="#001525" opacity="0.6"/>
-            <ellipse cx="1200" cy="650" rx="35" ry="8" fill="#001525" opacity="0.5"/>
-            <!-- Small rocks -->
-            <ellipse cx="320" cy="662" rx="12" ry="5" fill="#002040" opacity="0.6"/>
-            <ellipse cx="580" cy="656" rx="15" ry="6" fill="#002040" opacity="0.5"/>
-            <ellipse cx="850" cy="648" rx="10" ry="4" fill="#002040" opacity="0.6"/>
-            <ellipse cx="1100" cy="642" rx="14" ry="5" fill="#002040" opacity="0.5"/>
-
-            <!-- Submarine group -->
-            <g class="sub-group">
-                <!-- Headlight beam cone -->
-                <polygon points="820,460 950,400 950,520" fill="url(#headlight)" class="sub-light"/>
-                <ellipse cx="900" cy="460" rx="100" ry="50" fill="url(#headlight)" class="sub-light" opacity="0.5"/>
-
-                <!-- Submarine body -->
-                <ellipse cx="730" cy="460" rx="100" ry="28" fill="#0e3a5c"/>
-                <!-- Hull highlight -->
-                <ellipse cx="730" cy="450" rx="90" ry="16" fill="#134872" opacity="0.7"/>
-                <!-- Hull bottom shadow -->
-                <ellipse cx="730" cy="470" rx="85" ry="12" fill="#071e30" opacity="0.5"/>
-                <!-- Nose -->
-                <ellipse cx="832" cy="460" rx="14" ry="22" fill="#0e3a5c"/>
-                <!-- Conning tower / sail -->
-                <rect x="698" y="426" width="42" height="22" rx="5" fill="#0e3a5c"/>
-                <rect x="700" y="422" width="38" height="6" rx="3" fill="#1a5070"/>
-                <!-- Periscope -->
-                <line x1="720" y1="422" x2="720" y2="406" stroke="#1a5070" stroke-width="2.5"/>
-                <circle cx="720" cy="404" r="3.5" fill="#1a5070"/>
-                <!-- Tail fin -->
-                <polygon points="630,460 605,425 612,428 632,452" fill="#0e3a5c"/>
-                <polygon points="630,460 605,495 612,492 632,468" fill="#0e3a5c"/>
-                <!-- Rudder -->
-                <polygon points="628,460 618,454 618,466" fill="#0b2e48"/>
-                <!-- Propeller -->
-                <ellipse cx="622" cy="460" rx="3" ry="14" fill="#1a5070" opacity="0.8">
-                    <animateTransform attributeName="transform" type="rotate"
-                        from="0 622 460" to="360 622 460" dur="0.4s" repeatCount="indefinite"/>
-                </ellipse>
-                <!-- Viewport light -->
-                <circle cx="815" cy="458" r="5" fill="#5dc0e8" opacity="0.7">
-                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <!-- Hull detail lines -->
-                <line x1="660" y1="460" x2="800" y2="460" stroke="#1a5070" stroke-width="0.5" opacity="0.4"/>
+            <!-- ======== HUD / TACTICAL OVERLAY ======== -->
+            <!-- Tracking brackets -->
+            <g opacity="0.18" stroke="#00D4AA" stroke-width="0.7" fill="none">
+                <path d="M540,315 L540,335 L560,335"/>
+                <path d="M910,315 L910,335 L890,335"/>
+                <path d="M540,565 L540,545 L560,545"/>
+                <path d="M910,565 L910,545 L890,545"/>
             </g>
 
-            <!-- Sonar rings from right side -->
-            <g opacity="0.25">
-                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1.5" class="sonar-arc" opacity="0"/>
-                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1.2" class="sonar-arc" opacity="0"/>
-                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="1" class="sonar-arc" opacity="0"/>
-                <circle cx="1200" cy="320" r="15" fill="none" stroke="#0088cc" stroke-width="0.8" class="sonar-arc" opacity="0"/>
+            <!-- Sonar sweep display (bottom right) -->
+            <g transform="translate(1220, 590)" opacity="0.18">
+                <circle cx="0" cy="0" r="42" fill="none" stroke="#00D4AA" stroke-width="0.5"/>
+                <circle cx="0" cy="0" r="28" fill="none" stroke="#00D4AA" stroke-width="0.3"/>
+                <circle cx="0" cy="0" r="14" fill="none" stroke="#00D4AA" stroke-width="0.3"/>
+                <line x1="-46" y1="0" x2="46" y2="0" stroke="#00D4AA" stroke-width="0.2"/>
+                <line x1="0" y1="-46" x2="0" y2="46" stroke="#00D4AA" stroke-width="0.2"/>
+                <line x1="0" y1="0" x2="30" y2="-25" stroke="#00D4AA" stroke-width="0.7" class="hud-scan" style="transform-origin:0 0"/>
+                <circle cx="-12" cy="8" r="2" fill="#00D4AA" opacity="0.5" class="hud-blink"/>
+                <circle cx="18" cy="-5" r="1.5" fill="#00D4AA" opacity="0.3"/>
             </g>
 
-            <!-- Floating particles / marine snow -->
+            <!-- Telemetry (top right) -->
+            <g opacity="0.22">
+                <text x="1280" y="85" class="hud-text" fill="#00D4AA">DEPTH 4.2m</text>
+                <text x="1280" y="100" class="hud-text" fill="#00D4AA">HDG 142°T</text>
+                <text x="1280" y="115" class="hud-text" fill="#00D4AA">ROV ONLINE</text>
+                <line x1="1275" y1="72" x2="1275" y2="120" stroke="#00D4AA" stroke-width="0.4"/>
+            </g>
+
+            <!-- Status (top left) -->
+            <g opacity="0.2">
+                <text x="80" y="85" class="hud-text" fill="#00D4AA">SCOUR DETECTION // ACTIVE</text>
+                <text x="80" y="100" class="hud-text" fill="#00D4AA">VISUAL INSP ONLINE</text>
+                <text x="80" y="115" class="hud-text" fill="#00D4AA" class="hud-blink">REC ●</text>
+            </g>
+
+            <!-- Sonar pings -->
+            <g opacity="0.1">
+                <circle cx="720" cy="380" r="12" fill="none" stroke="#00D4AA" stroke-width="0.8" class="sonar-ring" opacity="0"/>
+                <circle cx="720" cy="380" r="12" fill="none" stroke="#00D4AA" stroke-width="0.6" class="sonar-ring" opacity="0"/>
+                <circle cx="720" cy="380" r="12" fill="none" stroke="#00D4AA" stroke-width="0.5" class="sonar-ring" opacity="0"/>
+                <circle cx="720" cy="380" r="12" fill="none" stroke="#00D4AA" stroke-width="0.3" class="sonar-ring" opacity="0"/>
+            </g>
+
+            <!-- Marine snow (subtle) -->
             <g>
-                <circle cx="200" cy="200" r="1" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="400" cy="350" r="1.5" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="600" cy="150" r="1" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="900" cy="280" r="1.2" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="1100" cy="400" r="1" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="300" cy="500" r="1.3" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="800" cy="100" r="1" fill="#4da8da" class="particle" opacity="0"/>
-                <circle cx="1300" cy="250" r="1.5" fill="#4da8da" class="particle" opacity="0"/>
+                <circle cx="200" cy="200" r="0.7" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="400" cy="340" r="0.9" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="600" cy="150" r="0.5" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="900" cy="280" r="0.7" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="1100" cy="400" r="0.6" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="300" cy="500" r="0.8" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="800" cy="100" r="0.5" fill="#4a90a8" class="marine-snow" opacity="0"/>
+                <circle cx="1300" cy="250" r="0.9" fill="#4a90a8" class="marine-snow" opacity="0"/>
             </g>
         </svg>
     </div>
 
+    <div class="caustics"></div>
+
     <div class="wrap">
         <div class="hero-badge"><i class="fas fa-anchor"></i> <span data-i18n="hero_badge">U.S. Navy Veteran &bull; DoD Secret Clearance</span></div>
-        <h1 data-i18n="hero_title">Maritime Autonomy<br>& Robotics</h1>
+        <h1><span data-i18n="hero_title">Maritime <span class="accent">Autonomy</span><br>& Robotics</span></h1>
         <p data-i18n="hero_desc">Building autonomous underwater, surface, and aerial robotic systems for critical infrastructure resilience and environmental monitoring.</p>
         <div class="hero-btns">
             <a href="#projects" class="btn btn-fill"><i class="fas fa-water"></i> <span data-i18n="hero_btn_work">View My Work</span></a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_btn_contact">Get in Touch</span></a>
+            <a href="#contact" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_btn_contact">Get in Touch</span></a>
         </div>
     </div>
 
-    <!-- Wave divider -->
+    <div class="scroll-hint">
+        <div class="arrow"></div>
+    </div>
+
     <div class="wave-divider">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-            <path fill="var(--navy)" fill-opacity="0.4"
-                d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+            <path fill="var(--navy)" fill-opacity="0.35"
+                d="M0,45 C360,85 720,5 1080,45 C1260,65 1380,55 1440,45 L1440,90 L0,90 Z">
                 <animate attributeName="d"
-                    values="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z;
-                            M0,50 C360,10 720,70 1080,30 C1260,10 1380,40 1440,50 L1440,80 L0,80 Z;
-                            M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"
-                    dur="8s" repeatCount="indefinite"/>
+                    values="M0,45 C360,85 720,5 1080,45 C1260,65 1380,55 1440,45 L1440,90 L0,90 Z;
+                            M0,55 C360,15 720,75 1080,35 C1260,15 1380,45 1440,55 L1440,90 L0,90 Z;
+                            M0,45 C360,85 720,5 1080,45 C1260,65 1380,55 1440,45 L1440,90 L0,90 Z"
+                    dur="9s" repeatCount="indefinite"/>
             </path>
-            <path fill="var(--navy)" fill-opacity="0.7"
-                d="M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z">
+            <path fill="var(--navy)" fill-opacity="0.65"
+                d="M0,60 C480,35 960,75 1440,50 L1440,90 L0,90 Z">
                 <animate attributeName="d"
-                    values="M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z;
-                            M0,45 C480,70 960,25 1440,55 L1440,80 L0,80 Z;
-                            M0,55 C480,30 960,70 1440,45 L1440,80 L0,80 Z"
-                    dur="6s" repeatCount="indefinite"/>
+                    values="M0,60 C480,35 960,75 1440,50 L1440,90 L0,90 Z;
+                            M0,50 C480,75 960,30 1440,60 L1440,90 L0,90 Z;
+                            M0,60 C480,35 960,75 1440,50 L1440,90 L0,90 Z"
+                    dur="7s" repeatCount="indefinite"/>
             </path>
             <path fill="var(--navy)"
-                d="M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z">
+                d="M0,70 C720,55 720,80 1440,65 L1440,90 L0,90 Z">
                 <animate attributeName="d"
-                    values="M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z;
-                            M0,60 C720,75 720,50 1440,65 L1440,80 L0,80 Z;
-                            M0,65 C720,50 720,75 1440,60 L1440,80 L0,80 Z"
-                    dur="10s" repeatCount="indefinite"/>
+                    values="M0,70 C720,55 720,80 1440,65 L1440,90 L0,90 Z;
+                            M0,65 C720,80 720,55 1440,70 L1440,90 L0,90 Z;
+                            M0,70 C720,55 720,80 1440,65 L1440,90 L0,90 Z"
+                    dur="11s" repeatCount="indefinite"/>
             </path>
         </svg>
     </div>
@@ -631,8 +757,9 @@
 
 <!-- ABOUT -->
 <div class="sec" id="about">
-    <div class="sec-title" data-i18n="sec_about">About</div>
+    <div class="sec-label" data-i18n="sec_about">about</div>
     <h2 data-i18n="about_name">Anthony Devesa</h2>
+    <div class="sec-line"></div>
     <div class="about-grid reveal">
         <div class="about-text">
             <p data-i18n="about_p1">
@@ -652,29 +779,31 @@
             </p>
         </div>
         <div class="profile-card">
-            <img id="profile-photo" src="profile.jpg" alt="Anthony Devesa" class="profile-img">
+            <div class="profile-ring">
+                <img id="profile-photo" src="profile.jpg" alt="Anthony Devesa" class="profile-img">
+            </div>
             <div class="profile-name">Anthony Devesa</div>
             <div class="profile-role" data-i18n="profile_role">PhD Candidate &bull; Roboticist</div>
         </div>
     </div>
 
-    <div class="skills-row reveal">
-        <div class="skill-card">
+    <div class="skills-row reveal-group">
+        <div class="skill-card reveal">
             <div class="skill-icon">&#129302;</div>
             <h4 data-i18n="skill_ai">AI & Machine Learning</h4>
             <p>TensorFlow, YOLO, Federated Learning, Differential Privacy, Multi-Agent Systems, RL</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card reveal">
             <div class="skill-icon">&#127754;</div>
             <h4 data-i18n="skill_robotics">Robotics & Simulation</h4>
             <p>ROS, Isaac Lab/Sim, Arduino, QGroundControl, BlueRobotics, Hycat Controls</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card reveal">
             <div class="skill-icon">&#9881;&#65039;</div>
             <h4 data-i18n="skill_prog">Programming</h4>
             <p>Python, C++, NumPy, Pandas, Matplotlib, Docker, Fusion 360</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card reveal">
             <div class="skill-icon">&#128737;&#65039;</div>
             <h4 data-i18n="skill_sys">Systems & Security</h4>
             <p>MBSE, Google Cloud, Windows Server, Security Analysis, Project Management</p>
@@ -684,9 +813,10 @@
 
 <!-- PROJECTS -->
 <div class="sec" id="projects">
-    <div class="sec-title" data-i18n="sec_projects">Projects</div>
+    <div class="sec-label" data-i18n="sec_projects">projects</div>
     <h2 data-i18n="projects_heading">Featured Work</h2>
-    <div class="proj-grid">
+    <div class="sec-line"></div>
+    <div class="proj-grid reveal-group">
 
         <div class="proj reveal">
             <div class="proj-top">
@@ -701,14 +831,14 @@
                 <div class="proj-techs">
                     <span class="tech">Python</span><span class="tech">ROS</span><span class="tech">CFD</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
-                <div class="proj-status" data-i18n="proj1_status">&#10003; Accepted &mdash; IROS 2026</div>
+                <a href="https://github.com/AdmiralCrow/Event-Triggered_Coverage_Planning_for_Towable_Sensing_Systems" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <div class="proj-status accepted" data-i18n="proj1_status">&#10003; Accepted &mdash; IROS 2026</div>
             </div>
         </div>
 
         <div class="proj reveal">
             <div class="proj-top">
-                <img src="WorkingPlanes.jpeg" alt="Heterogeneous robot team under bridge" class="proj-thumb">
+                <img src="WorkingPlanes.jpeg" alt="Heterogeneous robot team" class="proj-thumb">
                 <div class="proj-top-text">
                     <h3 data-i18n="proj2_title">AI-Driven Heterogeneous Robot Teams</h3>
                     <span class="proj-tag" data-i18n="proj2_tag">Published</span>
@@ -719,8 +849,8 @@
                 <div class="proj-techs">
                     <span class="tech">Multi-Agent</span><span class="tech">Diff. Privacy</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
-                <div class="proj-status" data-i18n="proj2_status">&#10003; Published &mdash; OCEANS 2025</div>
+                <a href="https://github.com/AdmiralCrow/AI-driven-Heterogeneous-Robot-Teams-for-Critical-Infrastructure-Resilience" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <div class="proj-status published" data-i18n="proj2_status">&#10003; Published &mdash; OCEANS 2025</div>
             </div>
         </div>
 
@@ -737,7 +867,7 @@
                 <div class="proj-techs">
                     <span class="tech">TensorFlow</span><span class="tech">YOLO</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/SEAQUEST" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <a href="https://github.com/AdmiralCrow/SEAQUEST" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
@@ -754,7 +884,7 @@
                 <div class="proj-techs">
                     <span class="tech">Python</span><span class="tech">Docker</span><span class="tech">React</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/Odin" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <a href="https://github.com/AdmiralCrow/Odin" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
@@ -770,7 +900,7 @@
                 <div class="proj-techs">
                     <span class="tech">ROS</span><span class="tech">Arduino</span><span class="tech">Python</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/BlueRov" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <a href="https://github.com/AdmiralCrow/BlueRov" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
@@ -787,7 +917,7 @@
                 <div class="proj-techs">
                     <span class="tech">Fusion 360</span><span class="tech">GRBL</span><span class="tech">Blender</span>
                 </div>
-                <a href="https://github.com/AdmiralCrow/CAD-Designs" class="proj-link"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
+                <a href="https://github.com/AdmiralCrow/CAD-Designs" class="proj-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view_repo">View Repository</span></a>
             </div>
         </div>
 
@@ -796,8 +926,9 @@
 
 <!-- PUBLICATIONS -->
 <div class="sec" id="research">
-    <div class="sec-title" data-i18n="sec_research">Research</div>
+    <div class="sec-label" data-i18n="sec_research">research</div>
     <h2 data-i18n="research_heading">Published Work</h2>
+    <div class="sec-line"></div>
 
     <div class="pub reveal">
         <h4>AI-Driven Heterogeneous Robot Teams for Critical Infrastructure Resilience</h4>
@@ -814,7 +945,7 @@
     </div>
 
     <div class="pub reveal">
-        <h4>Event-Triggered Coverage Planning for Towable Sensing Systems <span style="color:var(--success)" data-i18n="accepted">(Accepted)</span></h4>
+        <h4>Event-Triggered Coverage Planning for Towable Sensing Systems <span style="color:var(--warm)" data-i18n="accepted">(Accepted)</span></h4>
         <p class="authors">A. Devesa, D. Correa, C. Roa, L. Bobadilla, R. N. Smith and M. H. Amini</p>
         <p class="venue"><strong>IEEE/RSJ IROS</strong>, Pittsburgh, PA, USA, 2026</p>
     </div>
@@ -822,8 +953,9 @@
 
 <!-- EXPERIENCE -->
 <div class="sec">
-    <div class="sec-title" data-i18n="sec_experience">Experience</div>
+    <div class="sec-label" data-i18n="sec_experience">experience</div>
     <h2 data-i18n="experience_heading">Career Timeline</h2>
+    <div class="sec-line"></div>
     <div class="timeline">
         <div class="tl-item reveal">
             <h4 data-i18n="exp1_title">Modeling and Simulation Systems Engineer</h4>
@@ -860,9 +992,10 @@
 
 <!-- CONTACT -->
 <div class="sec" id="contact">
-    <div class="sec-title" data-i18n="sec_contact">Contact</div>
+    <div class="sec-label" data-i18n="sec_contact">contact</div>
     <h2 data-i18n="contact_heading">Let's Connect</h2>
-    <div class="contact-grid">
+    <div class="sec-line"></div>
+    <div class="contact-grid reveal-group">
         <div class="contact-card reveal">
             <i class="fas fa-envelope"></i>
             <h4 data-i18n="contact_email">Email</h4>
@@ -871,12 +1004,12 @@
         <div class="contact-card reveal">
             <i class="fab fa-linkedin"></i>
             <h4>LinkedIn</h4>
-            <a href="https://www.linkedin.com/in/anthonydevesa/" target="_blank">linkedin.com/in/anthonydevesa</a>
+            <a href="https://www.linkedin.com/in/anthonydevesa/" target="_blank" rel="noopener">linkedin.com/in/anthonydevesa</a>
         </div>
         <div class="contact-card reveal">
             <i class="fab fa-github"></i>
             <h4>GitHub</h4>
-            <a href="https://github.com/AdmiralCrow" target="_blank">github.com/AdmiralCrow</a>
+            <a href="https://github.com/AdmiralCrow" target="_blank" rel="noopener">github.com/AdmiralCrow</a>
         </div>
         <div class="contact-card reveal">
             <i class="fas fa-phone"></i>
@@ -890,77 +1023,57 @@
 <footer>
     <div class="brand">AD // Maritime Robotics</div>
     <p data-i18n="footer_info">&copy; 2026 Anthony Devesa &bull; Roboticist &bull; AI Researcher &bull; PhD Candidate</p>
-    <p style="margin-top:0.5rem;font-size:0.8rem" data-i18n="footer_creds">DoD Secret Clearance &bull; Published Researcher &bull; U.S. Navy Veteran</p>
+    <p style="margin-top:0.4rem;font-size:0.75rem" data-i18n="footer_creds">DoD Secret Clearance &bull; Published Researcher &bull; U.S. Navy Veteran</p>
 </footer>
 
 <script>
+// ---- i18n ----
 const translations = {
     es: {
-        nav_about: "Acerca",
-        nav_projects: "Proyectos",
-        nav_research: "Investigación",
-        nav_contact: "Contacto",
-        hero_badge: "Veterano de la Marina de EE.UU. • Autorización Secreta del DoD",
-        hero_title: "Autonomía Marítima<br>y Robótica",
-        hero_desc: "Construyendo sistemas robóticos autónomos submarinos, de superficie y aéreos para la resiliencia de infraestructura crítica y monitoreo ambiental.",
-        hero_btn_work: "Ver Mi Trabajo",
-        hero_btn_contact: "Contáctame",
-        sec_about: "Acerca",
-        about_name: "Anthony Devesa",
-        about_p1: "Como <strong>Roboticista</strong> dedicado, participo activamente en el avance de la IA, la robótica y el aprendizaje automático a través de investigación innovadora y aplicación en el mundo real. Mi trabajo actual se centra en el desarrollo de <strong>sistemas robóticos autónomos submarinos, de superficie y aéreos</strong> para el monitoreo de infraestructura y medio ambiente.",
-        about_p2: "Tengo experiencia en planificación geoespacial, navegación autónoma, detección ambiental, integración de sistemas robóticos, análisis hidrodinámico, simulación y validación de campo con <strong>plataformas ASV y ROV</strong>.",
-        about_p3: "Más allá de la investigación, continúo construyendo sistemas prácticos a través de proyectos como máquinas CNC e impresoras 3D, utilizando herramientas como <strong>GRBL, Fusion 360 y manufactura aditiva</strong> para fabricar piezas y prototipos personalizados.",
-        profile_role: "Candidato a PhD • Roboticista",
-        skill_ai: "IA y Aprendizaje Automático",
-        skill_robotics: "Robótica y Simulación",
-        skill_prog: "Programación",
-        skill_sys: "Sistemas y Seguridad",
-        sec_projects: "Proyectos",
-        projects_heading: "Trabajo Destacado",
-        proj1_title: "Planificación de Cobertura Activada por Eventos",
-        proj1_tag: "Investigación Doctoral",
-        proj1_desc: "Algoritmos de cobertura adaptativa para detección marina autónoma con drones, AUVs y vehículos de superficie. Validados mediante análisis CFD y despliegues reales con ASV/ROV.",
-        proj1_status: "✓ Aceptado — IROS 2026",
-        proj2_title: "Equipos Heterogéneos de Robots con IA",
-        proj2_tag: "Publicado",
-        proj2_desc: "Sistemas multi-agente para monitoreo autónomo y resiliencia de infraestructura crítica. Recolección de datos con privacidad diferencial para equipos heterogéneos de robots marinos.",
-        proj2_status: "✓ Publicado — OCEANS 2025",
-        proj3_tag: "Proyecto de Maestría",
-        proj3_desc: "Detección de embarcaciones basada en CNN a partir de imágenes electro-ópticas y radar de apertura sintética con evasión de colisiones por árboles de decisión para navegación autónoma.",
-        proj4_tag: "Proyecto Personal",
-        proj4_desc: "Asistente de IA multi-agente local con 13 agentes especializados, orquestación de LLM local, panel web, interfaz de voz y más de 800 pruebas. Contenedorizado con Docker.",
-        proj5_title: "Plataforma BlueROV",
-        proj5_tag: "En Curso",
-        proj5_desc: "Plataforma de Vehículo Submarino Autónomo con integración ROS, navegación autónoma, pipelines de aprendizaje por refuerzo y soporte para despliegues de campo.",
-        proj6_title: "CAD y Manufactura Aditiva",
-        proj6_tag: "Diseño",
-        proj6_desc: "Consola de simulador de vuelo, gabinete de máquina CNC, integración de impresora 3D y piezas de robótica personalizadas fabricadas con herramientas CAD modernas.",
-        view_repo: "Ver Repositorio",
-        sec_research: "Investigación",
-        research_heading: "Trabajo Publicado",
-        accepted: "(Aceptado)",
-        sec_experience: "Experiencia",
-        experience_heading: "Trayectoria Profesional",
-        exp1_title: "Ingeniero de Modelado y Simulación de Sistemas",
-        exp1_date: "Mayo 2026 – Presente",
-        exp1_desc: "Aplicar técnicas de IA/ML a flujos de trabajo de modelado y simulación de sistemas que respaldan MBSE. Desarrollar entornos de simulación validados para plataformas autónomas de misión crítica.",
-        exp2_title: "Roboticista, Candidato a PhD",
-        exp2_date: "Enero 2024 – Presente",
-        exp2_desc: "Diseñar algoritmos de planificación de cobertura activados por eventos. Gestionar equipos de investigación y validar compensaciones a nivel de misión mediante CFD y despliegues de campo.",
-        exp3_title: "Roboticista, Investigador (CTR)",
-        exp3_date: "Mayo 2025 – Agosto 2025",
-        exp3_desc: "Desarrollé modelos de locomoción para Boston Dynamics Spot en IsaacLab. Mejoré OceanSim con cámara EBS simulada para visión submarina.",
-        exp4_title: "Investigador",
-        exp4_date: "Mayo 2023 – Agosto 2023",
-        exp4_desc: "Investigación en sistemas autónomos y tecnologías de robótica.",
-        exp5_title: "Oficial de Policía MA3, Marina de EE.UU.",
-        exp5_desc: "Veterano de la Marina de EE.UU. Medalla de Buena Conducta, Medalla de Defensa Nacional, Medalla de la Guerra Global contra el Terrorismo.",
-        sec_contact: "Contacto",
-        contact_heading: "Conectemos",
-        contact_email: "Correo",
-        contact_phone: "Teléfono",
-        footer_info: "© 2026 Anthony Devesa • Roboticista • Investigador de IA • Candidato a PhD",
-        footer_creds: "Autorización Secreta del DoD • Investigador Publicado • Veterano de la Marina de EE.UU."
+        nav_about:"Acerca", nav_projects:"Proyectos", nav_research:"Investigación", nav_contact:"Contacto",
+        hero_badge:"Veterano de la Marina de EE.UU. • Autorización Secreta del DoD",
+        hero_title:'Autonomía <span class="accent">Marítima</span><br>y Robótica',
+        hero_desc:"Construyendo sistemas robóticos autónomos submarinos, de superficie y aéreos para la resiliencia de infraestructura crítica y monitoreo ambiental.",
+        hero_btn_work:"Ver Mi Trabajo", hero_btn_contact:"Contáctame",
+        sec_about:"acerca", about_name:"Anthony Devesa",
+        about_p1:'Como <strong>Roboticista</strong> dedicado, participo activamente en el avance de la IA, la robótica y el aprendizaje automático a través de investigación innovadora y aplicación en el mundo real. Mi trabajo actual se centra en el desarrollo de <strong>sistemas robóticos autónomos submarinos, de superficie y aéreos</strong> para el monitoreo de infraestructura y medio ambiente.',
+        about_p2:'Tengo experiencia en planificación geoespacial, navegación autónoma, detección ambiental, integración de sistemas robóticos, análisis hidrodinámico, simulación y validación de campo con <strong>plataformas ASV y ROV</strong>.',
+        about_p3:'Más allá de la investigación, continúo construyendo sistemas prácticos a través de proyectos como máquinas CNC e impresoras 3D, utilizando herramientas como <strong>GRBL, Fusion 360 y manufactura aditiva</strong> para fabricar piezas y prototipos personalizados.',
+        profile_role:"Candidato a PhD • Roboticista",
+        skill_ai:"IA y Aprendizaje Automático", skill_robotics:"Robótica y Simulación",
+        skill_prog:"Programación", skill_sys:"Sistemas y Seguridad",
+        sec_projects:"proyectos", projects_heading:"Trabajo Destacado",
+        proj1_title:"Planificación de Cobertura Activada por Eventos", proj1_tag:"Investigación Doctoral",
+        proj1_desc:"Algoritmos de cobertura adaptativa para detección marina autónoma con drones, AUVs y vehículos de superficie. Validados mediante análisis CFD y despliegues reales con ASV/ROV.",
+        proj1_status:"✓ Aceptado — IROS 2026",
+        proj2_title:"Equipos Heterogéneos de Robots con IA", proj2_tag:"Publicado",
+        proj2_desc:"Sistemas multi-agente para monitoreo autónomo y resiliencia de infraestructura crítica. Recolección de datos con privacidad diferencial para equipos heterogéneos de robots marinos.",
+        proj2_status:"✓ Publicado — OCEANS 2025",
+        proj3_tag:"Proyecto de Maestría",
+        proj3_desc:"Detección de embarcaciones basada en CNN a partir de imágenes electro-ópticas y radar de apertura sintética con evasión de colisiones por árboles de decisión para navegación autónoma.",
+        proj4_tag:"Proyecto Personal",
+        proj4_desc:"Asistente de IA multi-agente local con 13 agentes especializados, orquestación de LLM local, panel web, interfaz de voz y más de 800 pruebas. Contenedorizado con Docker.",
+        proj5_title:"Plataforma BlueROV", proj5_tag:"En Curso",
+        proj5_desc:"Plataforma de Vehículo Submarino Autónomo con integración ROS, navegación autónoma, pipelines de aprendizaje por refuerzo y soporte para despliegues de campo.",
+        proj6_title:"CAD y Manufactura Aditiva", proj6_tag:"Diseño",
+        proj6_desc:"Consola de simulador de vuelo, gabinete de máquina CNC, integración de impresora 3D y piezas de robótica personalizadas fabricadas con herramientas CAD modernas.",
+        view_repo:"Ver Repositorio",
+        sec_research:"investigación", research_heading:"Trabajo Publicado", accepted:"(Aceptado)",
+        sec_experience:"experiencia", experience_heading:"Trayectoria Profesional",
+        exp1_title:"Ingeniero de Modelado y Simulación de Sistemas", exp1_date:"Mayo 2026 – Presente",
+        exp1_desc:"Aplicar técnicas de IA/ML a flujos de trabajo de modelado y simulación de sistemas que respaldan MBSE. Desarrollar entornos de simulación validados para plataformas autónomas de misión crítica.",
+        exp2_title:"Roboticista, Candidato a PhD", exp2_date:"Enero 2024 – Presente",
+        exp2_desc:"Diseñar algoritmos de planificación de cobertura activados por eventos. Gestionar equipos de investigación y validar compensaciones a nivel de misión mediante CFD y despliegues de campo.",
+        exp3_title:"Roboticista, Investigador (CTR)", exp3_date:"Mayo 2025 – Agosto 2025",
+        exp3_desc:"Desarrollé modelos de locomoción para Boston Dynamics Spot en IsaacLab. Mejoré OceanSim con cámara EBS simulada para visión submarina.",
+        exp4_title:"Investigador", exp4_date:"Mayo 2023 – Agosto 2023",
+        exp4_desc:"Investigación en sistemas autónomos y tecnologías de robótica.",
+        exp5_title:"Oficial de Policía MA3, Marina de EE.UU.",
+        exp5_desc:"Veterano de la Marina de EE.UU. Medalla de Buena Conducta, Medalla de Defensa Nacional, Medalla de la Guerra Global contra el Terrorismo.",
+        sec_contact:"contacto", contact_heading:"Conectemos",
+        contact_email:"Correo", contact_phone:"Teléfono",
+        footer_info:"© 2026 Anthony Devesa • Roboticista • Investigador de IA • Candidato a PhD",
+        footer_creds:"Autorización Secreta del DoD • Investigador Publicado • Veterano de la Marina de EE.UU."
     }
 };
 
@@ -978,35 +1091,133 @@ function setLang(lang) {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
-        if (lang === 'es' && translations.es[key]) {
-            el.innerHTML = translations.es[key];
-        } else if (lang === 'en' && enCache[key]) {
-            el.innerHTML = enCache[key];
-        }
+        if (lang === 'es' && translations.es[key]) el.innerHTML = translations.es[key];
+        else if (lang === 'en' && enCache[key]) el.innerHTML = enCache[key];
     });
     document.getElementById('langToggle').textContent = lang === 'es' ? 'ES | EN' : 'EN | ES';
 }
 
-function toggleLang() {
-    setLang(currentLang === 'en' ? 'es' : 'en');
-}
+function toggleLang() { setLang(currentLang === 'en' ? 'es' : 'en') }
 
 collectEnglish();
+if (navigator.language && navigator.language.startsWith('es')) setLang('es');
 
-if (navigator.language && navigator.language.startsWith('es')) {
-    setLang('es');
+// ---- Nav scroll ----
+const nav = document.getElementById('mainNav');
+const progressBar = document.getElementById('progressBar');
+
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    if (docH > 0) progressBar.style.width = (window.scrollY / docH * 100) + '%';
+}, { passive: true });
+
+// ---- Mobile menu ----
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        menuBtn.classList.remove('open');
+        navLinks.classList.remove('open');
+    });
+});
+
+// ---- Reveal on scroll ----
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ---- Hero canvas particles ----
+const canvas = document.getElementById('heroCanvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let w, h;
+    let mouseX = -1, mouseY = -1;
+
+    function resize() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    canvas.parentElement.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', () => { mouseX = -1; mouseY = -1 });
+
+    function spawnParticle() {
+        return {
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.5 + 0.3,
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: -(Math.random() * 0.2 + 0.05),
+            o: Math.random() * 0.3 + 0.05,
+            pulse: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.02 + 0.005,
+        };
+    }
+
+    for (let i = 0; i < 40; i++) particles.push(spawnParticle());
+
+    function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        if (mouseX > 0 && mouseY > 0) {
+            const g = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 250);
+            g.addColorStop(0, 'rgba(20,100,140,0.03)');
+            g.addColorStop(0.5, 'rgba(10,80,120,0.012)');
+            g.addColorStop(1, 'rgba(10,80,120,0)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, w, h);
+        }
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.pulse += p.pulseSpeed;
+
+            if (p.y < -10 || p.x < -10 || p.x > w + 10) {
+                p.x = Math.random() * w;
+                p.y = h + 10;
+            }
+
+            const osc = Math.sin(p.pulse) * 0.15 + 0.85;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(80,150,170,${p.o * osc * 0.6})`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+    }
+    draw();
 }
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// ---- Profile ring rotation via conic-gradient update ----
+const ring = document.querySelector('.profile-ring');
+if (ring) {
+    let deg = 0;
+    function rotateRing() {
+        deg = (deg + 0.3) % 360;
+        ring.style.background = `conic-gradient(from ${deg}deg, #00D4AA, transparent 40%, #00D4AA 70%, transparent)`;
+        requestAnimationFrame(rotateRing);
+    }
+    rotateRing();
+}
 </script>
 
 </body>
